@@ -50,6 +50,10 @@
         const email = NotificationFabric.createnotification("email","masz nową wiadomość email");
         const sms = NotificationFabric.createnotification("sms","masz nową wiadomość sms");
         const push = NotificationFabric.createnotification("push","masz nową wiadomość push");
+
+        email.send();
+        sms.send();
+        push.send();
     </script>
 </body>
 </html>
