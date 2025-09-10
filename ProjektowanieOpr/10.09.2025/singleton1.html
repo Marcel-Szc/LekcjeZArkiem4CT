@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wzorce projektowe - SINGLETON</title>
+</head>
+<body>
+    <script>
+        class Singleton{
+            static counter = 0;
+            constructor(){
+                if(Singleton.instance) return Singleton.instance;
+                Singleton.instance = this;
+                Singleton.counter+=1;
+            }
+            logger(message){
+                console.log(`LOG: ${new Date().toISOString()}: ${message}`);
+            }
+            error(message){
+                console.error(`ERROR: ${new Date().toISOString()}: ${message}`);
+            }
+        }
+        const singleton1 = new Singleton();
+        const singleton2 = new Singleton();
+        const singleton3 = new Singleton();
+        const singleton4 = new Singleton();
+        singleton1.logger("TO jest singleton1");
+        singleton3.error("TO jest error");
+        console.log(Singleton.counter);
+        console.log(singleton1 === singleton2 && singleton3 === singleton2)
+    </script>
+</body>
+</html>

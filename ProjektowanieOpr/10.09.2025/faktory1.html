@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wzorce projektowe - FAKTORY</title>
+</head>
+<body>
+    <script>
+        class Car{
+            constructor(){
+                this.type = "Car";
+            }
+        }
+        class Bike{
+            constructor(){
+                this.type = "Bike";
+            }
+        }
+        class Bus{
+            constructor(){
+                this.type = "Bus";
+            }
+        }
+
+        class VechicleFactory{
+            createVechicle(vechicleType){
+                switch (vechicleType) {
+                    case "Car":
+                        return new Car();
+                    case "Bike":
+                        return new Bike();
+                    case "Bus":
+                        return new Bus();
+                    default:
+                        throw new Error("Nie znany typ pojazdu")
+                        break;
+                }
+            }
+        }
+        const factory = new VechicleFactory();
+
+        const car = factory.createVechicle("Car");
+        const bike = factory.createVechicle("Bike");
+        const bus = factory.createVechicle("Bus");
+
+        console.log(car.type);
+        console.log(bike.type);
+        console.log(bus.type);
+
+
+    </script>
+</body>
+</html>

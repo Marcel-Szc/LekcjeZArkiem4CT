@@ -1,0 +1,25 @@
+Temat: wzorce projektowe
+Wzorce(zastosowanie do dowolnego języka/technologii): 
+    1. SINGLETON - jedna instancja globalna
+        class Con{ 
+        // kod
+        }
+        const ob1 = new Con();// -> 1 Instancja
+        const ob2 = new Con();// -> 2 Instancja
+        const ob3 = new Con();// -> 3 Instancja
+        class Con{
+            constructor(){
+                if(Con.instance){
+                    return Con.instance;
+                }
+                Con.instance = this;
+            }
+        }
+        const ob1 = new Con();// -> 1 Instancja
+        const ob2 = new Con();// -> 1 Instancja
+    2. FAKTORY - elastyczne tworzenie obiektów
+
+    OBSERVER - powiadamianie wielu obiektów o zmianach
+    DECORATOR - dodawanie funkcjonalności do obiektów dynamicznie
+    STRATEGY - wymiana algorytmu w runtime bez zmiany klienta
+    FASADA - służy do uproszczenia interfejsu skomplikowanego systemu

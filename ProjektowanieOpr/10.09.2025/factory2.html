@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wzorce projektowe - FAKTORY</title>
+</head>
+<body>
+    <script>
+        //klasy które trafią do fabryki
+        class Notification{
+            constructor(message){
+                this.message = message;
+            }
+            send(){
+                console.log(`Wysyłam powiadomienie: ${this.message}`);
+            }
+        }
+        //konkretne produkty do fabryki
+        class EmailNotification extends Notification{
+            send(){
+                console.log(`Email: ${this.message}`);
+            }
+        }
+        class SMSNotification extends Notification{
+            send(){
+                console.log(`SMS: ${this.message}`);
+            }
+        }
+        class PushNotification extends Notification{
+            send(){
+                console.log(`Push: ${this.message}`);
+            }
+        }
+        // fabryka
+        class NotificationFabric{
+            static createnotification(type,message){
+                switch (type) {
+                    case "email":
+                        return new EmailNotification(message);
+                    case "sms":
+                        return new SMSNotification(message);
+                    case "push":
+                        return new PushNotification(message);
+                    default:
+                        throw new Error("nieznany typ powiadomienia")
+                }
+            }
+        }
+        const email = NotificationFabric.createnotification("email","masz nową wiadomość email");
+        const sms = NotificationFabric.createnotification("sms","masz nową wiadomość sms");
+        const push = NotificationFabric.createnotification("push","masz nową wiadomość push");
+    </script>
+</body>
+</html>
