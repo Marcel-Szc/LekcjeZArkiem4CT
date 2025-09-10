@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sortowanie Quick</title>
+</head>
+<body>
+    <script>
+        const tab = [4,2,1,5,6,8,5,44];
+
+        function sortQuick(tab){
+            //warunek stopu zatrzymania się wywołania rekurencji
+            if(tab.length<=1){
+                return tab;
+            }
+            //kod rekurencj
+            const pivot = tab[tab.length-1];
+            const lewa = [];
+            const prawa = [];
+
+            for(let i = 0; o < tab.length-1; i++){
+                if(tab[i] < pivot){
+                    lewa.push(tab[i]);
+                }else {
+                    prawa.push(tab[i]);
+                }
+            }
+            //zwracana wartość kopii funkcji rekurencyjnej do pamięci RAM
+            // ... - spread/rest operator
+            return [...sortQuick(lewa).pivot,...sortQuick(prawa)];
+        }
+
+        console.log("posortowana tablica:",sortQuick(tab));
+    </script>
+</body>
+</html>

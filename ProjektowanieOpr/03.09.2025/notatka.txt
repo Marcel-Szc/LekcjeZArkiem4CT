@@ -1,0 +1,22 @@
+T: Sortowanie - Tablic
+ 1. Złożoność akgorytmu:
+    - czasową:
+        a) sort(pętla): ❎
+        b) sort(rekur.): ✅
+    - pamięciową:
+        a) sort(pętla): ✅
+        a) sort(rekur.): ❎
+    [8,3,4,5,1] QUICKSORT (Dziel i Zwyciężaj)
+    pivot = 8
+    lewa []-> 3,4,5,1
+    prawa []
+    pivot = 3
+    lewa[]-> 1
+    prawa[]-> 4, 5
+    pivot = 4
+    lewa[]
+    prawa[]-> 5
+    quick(int rray[], int n)
+    {
+        Return[quick(lewa[]), pivot, quick(prawa[])]
+    }

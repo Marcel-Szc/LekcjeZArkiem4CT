@@ -1,0 +1,19 @@
+{
+  "name": "08.09.2025_nodejs",
+  "version": "1.0.0",
+  "description": "Nger you made it",
+  "main": "index.js",
+  "scripts": {
+    "test": "Start app"
+  },
+  "keywords": [
+    "your",
+    "number",
+    "1"
+  ],
+  "author": "Lester",
+  "license": "ISC",
+  "dependencies": {
+    "typescript": "^5.9.2"
+  }
+}
