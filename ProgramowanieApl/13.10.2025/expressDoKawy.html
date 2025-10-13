@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        .main {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            margin: auto;
+        }
+        h1, h2 {
+            text-align: center;
+        }
+        .top, .bottom {
+            margin-bottom: 20px;
+        }
+        select, input[type="number"], button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+        #result {
+            background: #e2e2e2;
+            padding: 10px;
+            border-radius: 4px;
+            min-height: 50px;
+        }
+    </style>
+</head>
+<body>
+    <section class="main">
+        <h1>Ekspres do kawy</h1>
+        <div class="top">
+            <h2>Wybierz rodzaj kawy</h2>
+            <select name="type" id="type">
+                <option value="czarna">Czarna</option>
+                <option value="biala">Biała</option>
+                <option value="late">Late</option>
+                <option value="expresso">Expresso</option>
+            </select>
+            <input type="number" id="sugar" placeholder="Ilość cukru (0-5)" min="0" max="5">
+            <select name="size" id="size">
+                <option value="Medium">M</option>
+                <option value="Large">L</option>
+                <option value="XLarge">XL</option>
+            </select>
+            <button id="coffee">Oblicz</button>
+        </div>
+        <div class="bottom">
+            <h2>Wynik</h2>
+            <div id="result">
+
+            </div>
+    </section>
+    <script>
+            class Czarna {
+                constructor(sugar, size, price) {
+                    this.sugar = sugar;
+                    this.size = size;
+                    this.price = price;
+                }
+                getDetails() {
+                    return `Kawa Czarna, Cena: ${this.price}, Ilość cukru: ${this.sugar}, Rozmiar: ${this.size}`;
+                }
+            }
+            class Biala {
+                constructor(sugar, size, price) {
+                    this.sugar = sugar;
+                    this.size = size;
+                    this.price = price;
+                }
+                getDetails() {
+                    return `Kawa Biała, Cena: ${this.price}, Ilość cukru: ${this.sugar}, Rozmiar: ${this.size}`;
+                }
+            }
+            class Late {
+                constructor(sugar, size, price) {
+                    this.sugar = sugar;
+                    this.size = size;
+                    this.price = price;
+                }
+                getDetails() {
+                    return `Kawa Late, Cena: ${this.price}, Ilość cukru: ${this.sugar}, Rozmiar: ${this.size}`;
+                }
+            }
+            class Expresso {
+                constructor(sugar, size, price) {
+                    this.sugar = sugar;
+                    this.size = size;
+                    this.price = price;
+                }
+                getDetails() {
+                    return `Kawa Expresso, Cena: ${this.price}, Ilość cukru: ${this.sugar}, Rozmiar: ${this.size}`;
+                }
+            }
+            class CoffeeFacade {
+                constructor() {
+                    this.coffee = null;
+                }
+                makeCoffee(type, sugar, size) {
+                    var sugarValue = "Brak";
+                    var price = 0;
+                    switch (size) {
+                        case "Medium":
+                            var sizeValue = "Średnia";
+                            var priceM = 1;
+                            break;
+                        case "Large":
+                            var sizeValue = "Duża";
+                            var priceM = 1.25;
+                            break;
+                        case "XLarge":
+                            var sizeValue = "Bardzo duża";
+                            var priceM = 1.5;
+                            break;
+                        default:
+                            var sizeValue = "Brak Danych";
+                    }
+
+                    if (sugar > 0) {
+                        sugarValue = sugar;
+                    } 
+
+                    switch (type) {
+                        case "czarna":
+                            price = 5 + (sugar * 0.5);
+                            console.log(price);
+                            price *= priceM;
+                            console.log(price);
+                            price = price.toFixed(2);
+                            console.log(price);
+                            this.coffee = new Czarna(sugarValue, sizeValue, price);
+                            break;
+                        case "biala":
+                            price = 6 + (sugar * 0.5);
+                            console.log(price);
+                            price *= priceM;
+                            console.log(price);
+                            price = price.toFixed(2);
+                            console.log(price);
+                            this.coffee = new Biala(sugarValue, sizeValue, price);
+                            break;
+                        case "late":
+                            price = 4 + (sugar * 0.5);
+                            console.log(price);
+                            price *= priceM;
+                            console.log(price);
+                            price = price.toFixed(2);
+                            console.log(price);
+                            this.coffee = new Late(sugarValue, sizeValue, price);
+                            break;
+                        case "expresso":
+                            price = 9 + (sugar * 0.5);
+                            console.log(price);
+                            price *= priceM;
+                            console.log(price);
+                            price = price.toFixed(2);
+                            console.log(price);
+                            this.coffee = new Expresso(sugarValue, sizeValue, price);
+                            break;
+                        default:
+                            return "Nieznany typ kawy";
+                    }
+                    return this.coffee.getDetails();
+                }
+            }
+            document.getElementById("coffee").addEventListener("click", function () {
+                const type = document.getElementById("type").value;
+                const sugar = document.getElementById("sugar").value;
+                const size = document.getElementById("size").value;
+                const coffeeFacade = new CoffeeFacade();
+                const details = coffeeFacade.makeCoffee(type, sugar, size);
+                document.getElementById("result").innerText = details;
+        });
+    </script>
+</body>
+</html>

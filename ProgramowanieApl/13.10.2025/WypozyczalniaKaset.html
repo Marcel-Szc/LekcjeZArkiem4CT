@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wypożyczalnia Kaset</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        h1 {
+            text-align: center;
+        }
+        .Left, .Right {
+            width: 45%;
+            display: inline-block;
+            vertical-align: top;
+            margin: 10px;
+        }
+        .Left {
+            border-right: 1px solid #ccc;
+            padding-right: 20px;
+        }
+        .Right {
+            padding-left: 20px;
+        }
+        select, button {
+            display: block;
+            margin: 10px 0;
+            padding: 5px;
+            width: 100%;
+        }
+        #result {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            min-height: 50px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Wypożyczalnia Kaset</h1>
+    <section class="Left">
+            <h2>Wybierz Gatunek</h2>
+            <select name="type" id="type">
+                <option value="sensetion">Sensacja</option>
+                <option value="science">Scien-Fiction</option>
+                <option value="horror">Horror</option>
+            </select>
+            <h2>Wybierz nazwę filmu</h2>
+            <select name="name" id="name">
+                <option value="film1">Film1</option>
+                <option value="film2">Film2</option>
+                <option value="film2">Film3</option>
+            </select>
+            <button id="rent">Wypozycz</button>   
+    </section>
+    <section class="Right">
+        <h2>Wynik</h2>
+        <div id="result"></div>
+    </section>
+    <script>
+         class Sensation {
+                constructor(name) {
+                    this.name = name;
+                }
+                getDetails() {
+                    return `Film Sensacyjny: ${this.name}`;
+                }
+            }
+            class ScienceFiction {
+                constructor(name) {
+                    this.name = name;
+                }
+                getDetails() {
+                    return `Film Sci-Fi: ${this.name}`;
+                }
+            }
+            class Horror {
+                constructor(name) {
+                    this.name = name;
+                }
+                getDetails() {
+                    return `Film Horror: ${this.name}`;
+                }
+            }
+            class MovieRentalFacade {
+                constructor() {
+                    this.sensation = null;
+                    this.scienceFiction = null;
+                    this.horror = null;
+                }
+                rentMovie(type, name) {
+                    switch (type) {
+                        case "sensetion":
+                            this.sensation = new Sensation(name);
+                            return this.sensation.getDetails();
+                        case "science":
+                            this.scienceFiction = new ScienceFiction(name);
+                            return this.scienceFiction.getDetails();
+                        case "horror":
+                            this.horror = new Horror(name);
+                            return this.horror.getDetails();
+                        default:
+                            return "Nieznany typ filmu";
+                    }
+                }
+            }
+        document.getElementById("rent").addEventListener("click", function () {
+
+            const movieRental = new MovieRentalFacade();
+            document.getElementById("rent").addEventListener("click", function () {
+                const type = document.getElementById("type").value;
+                const name = document.getElementById("name").value;
+                const details = movieRental.rentMovie(type, name);
+                document.getElementById("result").innerText = details;
+            });
+        });
+    </script>
+</body>
+</html>

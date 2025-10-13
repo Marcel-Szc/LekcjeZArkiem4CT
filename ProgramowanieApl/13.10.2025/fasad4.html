@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+          //Podsystemy
+          class WeatherAPI {
+            async getWeather(city) {
+              return `Pogoda w ${city}: Burza Fortnite, 60°C`;
+            }
+          }
+          class NewsAPI {
+            async getTopNews() {
+                return ["Więcej deszczu przez weekend", "Niebo zachmurzone"];
+            }
+          }
+          class CurrencyAPI {
+            async getExchangeRates(currency) {
+                return `kurs ${currency} wynosi 4.7 PLN`;
+            }
+          }
+          //Fasada
+            class InfoFasada {
+                constructor() {
+                    this.weather = new WeatherAPI();
+                    this.news = new NewsAPI();
+                    this.currency = new CurrencyAPI();
+                }
+                async getInfo(city, currency) {
+                    const weather = await this.weather.getWeather(city);
+                    const news = await this.news.getTopNews();
+                    const exchangeRate = await this.currency.getExchangeRates(currency);
+                    return { weather, news, exchangeRate };
+                }
+            }
+            //Implementacja
+            (async () => {
+                const infoFasada = new InfoFasada();
+                const info = await infoFasada.getInfo("Pabianice", "USD");
+                console.log(info);
+            })();
+        });
+    </script>
+</body>
+</html>

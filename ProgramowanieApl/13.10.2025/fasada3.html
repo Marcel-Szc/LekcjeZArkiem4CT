@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            //Podsystemy-------------------------------------------------------------
+            class Kitchen {
+                prepareMeal(meal) {
+                    console.log(`Przygotowywanie posiłku: ${meal}`);
+                }
+            }
+            class Delivery {
+                scheduleDelivery(address) {
+                    console.log(`Dostawa zaplanowana na adres: ${address}`);
+                }
+            }
+            class Payment {
+                processPayment(amount) {
+                    console.log(`Przetwarzanie płatności: ${amount}`);
+                }
+            }
+            //-----------------------------------------------------------------------
+            //Fasada-----------------------------------------------------------------
+            class FoodFasada {
+                constructor() {
+                    this.kitchen = new Kitchen();
+                    this.delivery = new Delivery();
+                    this.payment = new Payment();
+                }
+                orderFood(meal, address, amount) {
+                    console.log("Rozpoczynanie zamówienia jedzenia...");
+                    this.kitchen.prepareMeal(meal);
+                    this.payment.processPayment(amount);
+                    this.delivery.scheduleDelivery(address);
+                    console.log("Zamówienie zakończone. Smacznego!");
+                }
+            }
+            //-----------------------------------------------------------------------
+            //Implenetacja-----------------------------------------------------------
+            const zamowienienr1 = new FoodFasada();
+            zamowienienr1.orderFood("Pizza Margherita", "ul. Poniatowskiego 2", 289.99);
+        });
+    </script>
+</body>
+</html>

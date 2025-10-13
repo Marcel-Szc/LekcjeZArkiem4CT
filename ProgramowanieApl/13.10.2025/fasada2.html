@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            //podsystem
+            class AudioSystem {
+                turnOn() {
+                    console.log("Audio włączone");
+                }
+                setVolume(level) {
+                    console.log(`Głośność ustawiona na ${level}`);
+                }
+            }
+            class VideoSystem {
+                turnOn() {
+                    console.log("Wideo włączone");
+                }
+                setResolution(resolution) {
+                    console.log(`Rozdzielczość ustawiona na ${resolution}`);
+                }
+            }
+            class StreamingService {
+                connect() {
+                    console.log(`Połączono z serwisem ${this.serviceName}`);
+                }
+                play(movie) {
+                    console.log(`Odtwarzanie filmu: ${movie}`);
+                }
+            }
+            //fasada
+            class HomeAudioVideoSystemFacade {
+                constructor() {
+                    this.audio = new AudioSystem();
+                    this.video = new VideoSystem();
+                    this.streaming = new StreamingService();
+                }
+                watchMovie(movie) {
+                    console.log("Przygotowanie do oglądania filmu...");
+                    this.audio.turnOn();
+                    this.audio.setVolume(99);
+                    this.video.turnOn();
+                    this.video.setResolution("4K HDR");
+                    this.streaming.connect();
+                    this.streaming.play(movie);
+                    console.log("Miłego seansu!");
+                }
+            }
+            //implementacja wzorca fasady
+            const mojSystemAudioVideo = new HomeAudioVideoSystemFacade();
+            mojSystemAudioVideo.watchMovie("Matrix");
+        });
+    </script>
+</body>
+</html>

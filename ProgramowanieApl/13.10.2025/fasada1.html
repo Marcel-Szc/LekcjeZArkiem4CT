@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+
+            class Samochody {
+                constructor(marka, model, rokProdukcji) {
+                    this.marka = marka;
+                    this.model = model;
+                    this.rokProdukcji = rokProdukcji;
+                }
+
+                wyswietlInfo() {
+                    console.log(`Marka: ${this.marka}, Model: ${this.model}, Rok produkcji: ${this.rokProdukcji}`);
+                }
+            }
+
+            class Ciagniki {
+                constructor(marka, model, rokProdukcji) {
+                    this.marka = marka;
+                    this.model = model;
+                    this.rokProdukcji = rokProdukcji;
+                }
+
+                wyswietlInfo() {
+                    console.log(`Marka: ${this.marka}, Model: ${this.model}, Rok produkcji: ${this.rokProdukcji}`);
+                }
+            }
+
+            class Ciezarowe {
+                constructor(marka, model, rokProdukcji) {
+                    this.marka = marka;
+                    this.model = model;
+                    this.rokProdukcji = rokProdukcji;
+                }
+
+                wyswietlInfo() {
+                    console.log(`Marka: ${this.marka}, Model: ${this.model}, Rok produkcji: ${this.rokProdukcji}`);
+                }
+            }
+
+            class FasadaMotoryzacji {
+                constructor({ samochody, ciagniki, ciezarowki }) {
+                    this.samochody = samochody;
+                    this.ciagniki = ciagniki;
+                    this.ciezarowki = ciezarowki;
+                }
+
+                prezentacja1() {
+                    this.samochody.wyswietlInfo();
+                }
+
+                prezentacja2() {
+                    this.ciagniki.wyswietlInfo();
+                }
+
+                prezentacja3() {
+                    this.ciezarowki.wyswietlInfo();
+                }
+            }
+
+            // Tworzenie obiektów
+            const samochody = new Samochody("Toyota", "Corolla", 2020);
+            const ciagniki = new Ciagniki("Ursus", "125T", 2010);
+            const ciezarowki = new Ciezarowe("Scania", "R450", 2018);
+
+          
+            const fasada = new FasadaMotoryzacji({ samochody, ciagniki, ciezarowki });
+
+        
+            fasada.prezentacja1();
+            fasada.prezentacja2();
+            fasada.prezentacja3();
+
+        });
+    </script>
+</body>
+</html>
