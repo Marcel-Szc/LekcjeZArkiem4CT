@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="wynik"></div>
+</body>
+    <script>
+        let text = "To jest testowy tekst";
+        let shift = 3;
+        let wynik = "";
+
+        for (let i = 0; i < text.length; i++) {
+            let char = text[i];
+            if (/[a-zA-Z]/.test(char)) {
+                let code = text.charCodeAt(i); // zamiana na ASCII
+                let offset = (code >= 97) ? 97 : 65; // offset dla małych i dużych liter
+                let index = code - offset; // wyznaczenie indexu (0-25) dla poszczególnej litery (bo 26 liter,ale string traktuje jako tabl)
+                let przesuniecie = index + shift; // szyfrowanie o 3 znaki do przodu
+                let modulo = przesuniecie % 26; // zawinięcie, aby nie wyjść poza zakres 0-25
+                let dodajOffset = modulo + offset; // powrót do ASCII dodając resztę z dzielenia do początku ASCII alfabetu
+                let newChar = String.fromCharCode(dodajOffset); // zamiana ASCII z powrotem na String
+                /*
+                let newChar = String.fromCharCode(((code - offset + shift) % 26) + offset);
+                */
+                wynik += newChar;
+            }
+            else {
+                wynik += char;
+            }
+            
+        }
+        document.querySelector(".wynik").innerText = wynik;
+    </script>
+</html>
