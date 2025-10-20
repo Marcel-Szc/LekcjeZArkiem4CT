@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f2f2f2;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 40px;
+    }
+
+    select, button {
+        padding: 10px;
+        font-size: 16px;
+        margin: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #fff;
+        transition: all 0.3s ease;
+    }
+
+    select:hover, button:hover {
+        border-color: #888;
+        box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    }
+
+    button {
+        background-color: #4CAF50;
+        color: white;
+        cursor: pointer;
+    }
+
+    button:active {
+        background-color: #45a049;
+    }
+
+    #wynik {
+        margin-top: 20px;
+        padding: 20px;
+        width: 300px;
+        background-color: #fff;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        white-space: pre-line;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+</style>
+
+</head>
+<body>
+    <select name="uczniowie" id="uczniowie">
+        <option value="uczen1">Jan Kowalski</option>
+        <option value="uczen2">Janusz Jakowski</option>
+        <option value="uczen3">Tomasz Problem</option>
+        <option value="uczen4">Grzegorz Floryda</option>
+        <option value="uczen5">Jakub Rudzinski</option>
+    </select>
+    <button id="ok">OK</button>
+    <div id="wynik"></div>
+    <script>
+        document.addEventListener("DOMContentLoaded",()=>{
+            const wynik = document.getElementById("wynik");
+
+            document.getElementById("ok").addEventListener("click",()=>{
+                let uczen = document.getElementById("uczniowie").value;
+
+                class Info{
+                    constructor(wzrost,waga,zainteresowania){
+                        this.wzrost = wzrost;
+                        this.waga = waga;
+                        this.zainteresowania = zainteresowania;
+                    }
+                    wyswietl(){
+                        wynik.innerText = "Wzrost: "+this.wzrost+"\nWaga: "+this.waga+"\nZaintersowania: "+this.zainteresowania;
+                    }
+                }
+                class Uczen1 extends Info {
+                    wyswietl(){
+                        wynik.innerText = "Wzrost Jana: "+this.wzrost+"\nWaga Jana: "+this.waga+"\nZaintersowania Jana: "+this.zainteresowania;
+                    }
+                }
+                class Uczen2 extends Info {
+                    wyswietl(){
+                        wynik.innerText = "Wzrost Janusza: "+this.wzrost+"\nWaga Janusza: "+this.waga+"\nZaintersowania Janusza: "+this.zainteresowania;
+                    }
+                }
+                class Uczen3 extends Info {
+                    wyswietl(){
+                        wynik.innerText = "Wzrost Tomasza: "+this.wzrost+"\nWaga Tomasza: "+this.waga+"\nZaintersowania Tomasza: "+this.zainteresowania;
+                    }
+                }
+                class Uczen4 extends Info {
+                    wyswietl(){
+                        wynik.innerText = "Wzrost Grzegorza: "+this.wzrost+"\nWaga Grzegorza: "+this.waga+"\nZaintersowania Srzegorza: "+this.zainteresowania;
+                    }
+                }
+                class Uczen5 extends Info {
+                    wyswietl(){
+                        wynik.innerText = "Wzrost Jakuba: "+this.wzrost+"\nWaga Jakuba: "+this.waga+"\nZaintersowania Jakuba: "+this.zainteresowania;
+                    }
+                }
+                
+                class FactoryUczniow{
+                    static wybor(wzrost,waga,zainteresowania){
+                        switch (uczen) {
+                            case "uczen1":
+                                return new Uczen1(wzrost,waga,zainteresowania);s
+                                break;
+                            case "uczen2":
+                                return new Uczen2(wzrost,waga,zainteresowania);s
+                                break;
+                            case "uczen3":
+                                return new Uczen3(wzrost,waga,zainteresowania);s
+                                break;
+                            case "uczen4":
+                                return new Uczen4(wzrost,waga,zainteresowania);s
+                                break;
+                            case "uczen5":
+                                return new Uczen5(wzrost,waga,zainteresowania);s
+                                break;    
+                            default:
+                                throw new Error("Nieznany uczeń")
+                                break;
+                        }
+                    }
+                }   
+                
+                switch (uczen) {
+                    case "uczen1":
+                        const Jan = FactoryUczniow.wybor(180,80,"Piłka nożna");
+                        Jan.wyswietl();
+                        break;
+                    case "uczen2":
+                        const Janusz = FactoryUczniow.wybor(181,79,"Gry wideo");
+                        Janusz.wyswietl();
+                        break;
+                    case "uczen3":
+                        const Tomasz = FactoryUczniow.wybor(182,78,"programowanie");
+                        Tomasz.wyswietl();
+                        break;
+                    case "uczen4":
+                        const Grzegorz = FactoryUczniow.wybor(195,80,"Koszykówka");
+                        Grzegorz.wyswietl();
+                        break;
+                    case "uczen5":
+                        const Jakub = FactoryUczniow.wybor(154,94,"Valorant");
+                        Jakub.wyswietl();
+                        break;
+                    default:
+                        throw new Error("Nieznany uczen")
+                        break;
+                    }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,9 @@
+Temat: wrzorzec projektowy - factory
+    Factory Method to metoda/wrzorzec wytwórczy
+    Służy do tworzenia obiektów bez bezpośredniego użycia słowa "new"
+    Zamiast tego wywołuje się metodę fabryki, która decyduje jaki ubiekt utworzyć
+    Pozwala na łatwe rozszerzanie kodu bez modyfikacji logiki klienta 
+    Zostosowanie: systemy pluginów, api zwracajacego różne typy obiektów w zależności od parametrów
+
+    Zadanie na Ocenę:
+    Factory uczniów, prezentuje 5 różnych uczniów

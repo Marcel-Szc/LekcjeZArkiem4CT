@@ -1,0 +1,39 @@
+C:\Users\uczen
+λ cd C:\Users\uczen\Documents\Marcel Szczerek\20.10.2025NODEJS
+
+C:\Users\uczen\Documents\Marcel Szczerek\20.10.2025NODEJS
+λ npm init -y
+Wrote to C:\Users\uczen\Documents\Marcel Szczerek\20.10.2025NODEJS\package.json:
+
+{
+  "name": "20.10.2025nodejs",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
+
+
+
+
+C:\Users\uczen\Documents\Marcel Szczerek\20.10.2025NODEJS (20.10.2025nodejs@1.0.0)
+λ npm install typescript
+
+added 1 package in 5m
+
+C:\Users\uczen\Documents\Marcel Szczerek\20.10.2025NODEJS (20.10.2025nodejs@1.0.0)
+λ code .
+
+C:\Users\uczen\Documents\Marcel Szczerek\20.10.2025NODEJS (20.10.2025nodejs@1.0.0)
+λ npx tsc -init
+
+Created a new tsconfig.json
+                                                                                                                     TS You can learn more at https://aka.ms/tsconfig
+
+C:\Users\uczen\Documents\Marcel Szczerek\20.10.2025NODEJS (20.10.2025nodejs@1.0.0)
+λ code .

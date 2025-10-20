@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Factory</title>
+</head>
+<body>
+    <div id="wynik"> </div>
+    <script>
+        const wynik = document.getElementById("wynik");
+        //Zadanie 1
+            //Produkty
+            class Car{
+                constructor(){
+                    this.type = "car";
+                }
+            }
+            class Bike{
+                constructor(){
+                    this.type = "bike";
+                }
+            }
+            class Truck{
+                constructor(){
+                    this.type = "truck";
+                }
+            }
+
+            class VechicleFactory{
+                createVechicle(vechicleType){
+                    switch (vechicleType) {
+                        case "car":
+                            return new Car()
+                            break;
+                        case "bike":
+                            return new Bike()
+                            break;
+                        case "truck":
+                            return new Truck()
+                            break;
+                        default:
+                            throw new Error("Nieznznay typ pojazdu")
+                            break;
+                    }
+                }
+            }
+            //implementcja
+            const fabryka = new VechicleFactory();
+            const car = fabryka.createVechicle("car");
+            const bike = fabryka.createVechicle("bike");
+            const truck = fabryka.createVechicle("truck");
+
+            wynik.innerText += "Zadanie 1: \n" + car.type + "\n" + bike.type + "\n" + truck.type;
+        //Zadanie 2
+            wynik.innerText += "\n Zadanie 2: \n" ;
+            class Powiadomienia{
+                constructor(wiadomosc){
+                    this.wiadomosc = wiadomosc;
+                }
+                send(){
+                    wynik.innerText += `Wysyłam wiadomość: ${this.wiadomosc} \n`;
+                }
+            }
+            //produkty dla factory
+            class SMSPowiadomienia extends Powiadomienia {
+                send(){
+                    wynik.innerText += `SMS: ${this.wiadomosc} \n`;
+                }
+            }
+            class EmailPowiadomienia extends Powiadomienia {
+                send(){
+                    wynik.innerText += `Email: ${this.wiadomosc} \n`;
+                }
+            }
+            class PushPowiadomienia extends Powiadomienia {
+                send(){
+                    wynik.innerText += `Push: ${this.wiadomosc} \n`;
+                }
+            }
+            class ChatPowiadomienia extends Powiadomienia {
+                send(){
+                    wynik.innerText += `Chat: ${this.wiadomosc} \n`;
+                }
+            }
+            //factory
+            class PowiadomieniaFaktory{
+                static createPowiadomienia(type,wiadomosc){
+                    switch (type) {
+                        case 'email':
+                            return new EmailPowiadomienia(wiadomosc);
+                            break;
+                        case 'sms':
+                            return new SMSPowiadomienia(wiadomosc);
+                            break;
+                        case 'push':
+                            return new PushPowiadomienia(wiadomosc);
+                            break;
+                        case 'chat':
+                            return new ChatPowiadomienia(wiadomosc);
+                            break;
+                        default:
+                            throw new Error("Niezanany typ powiadomienia");
+                            break;
+                    }
+                }
+            }
+            // testowanie
+            const email = PowiadomieniaFaktory.createPowiadomienia("email", "masz nową wiadomość email");
+            const SMS = PowiadomieniaFaktory.createPowiadomienia("sms", "usuń SMS");
+            const push = PowiadomieniaFaktory.createPowiadomienia("push", "masz nową wiadomość push");
+            const chat = PowiadomieniaFaktory.createPowiadomienia("chat", "*W Chat*");
+
+            email.send();
+            SMS.send();
+            push.send();
+            chat.send();
+        //Zadanie 3 Na Ocenę
+        
+        //Zadanie 4 Na Ocenę
+
+   </script>
+</body>
+</html>
