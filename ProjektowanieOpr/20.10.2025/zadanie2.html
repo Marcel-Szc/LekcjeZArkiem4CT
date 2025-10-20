@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Katalog Rowerów</title>
+    <style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f2f2f2;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 40px;
+    }
+
+    h1 {
+        color: #333;
+        margin-bottom: 20px;
+    }
+
+    select, button {
+        padding: 10px;
+        font-size: 16px;
+        margin: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #fff;
+        transition: all 0.3s ease;
+    }
+
+    select:hover, button:hover {
+        border-color: #888;
+        box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    }
+
+    button {
+        background-color: #4CAF50;
+        color: white;
+        cursor: pointer;
+    }
+
+    button:active {
+        background-color: #45a049;
+    }
+
+    #wynik {
+        margin-top: 20px;
+        padding: 20px;
+        width: 400px;
+        background-color: #fff;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        text-align: center;
+    }
+
+    #wynik img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 5px;
+        margin-top: 10px;
+    }
+</style>
+
+</head>
+<body>
+    <h1>Katalog Rowerów</h1>
+    <select name="rowery" id="rowery">
+        <option value="rower1">Giant Talon 29</option>
+        <option value="rower2">Trek Marlin 7</option>
+        <option value="rower3">Specialized Rockhopper</option>
+        <option value="rower4">Kross Level</option>
+        <option value="rower5">Scott Aspect 950</option>
+    </select>
+    <button id="ok">Pokaż szczegóły</button>
+    <div id="wynik"></div>
+    <script>
+        document.addEventListener("DOMContentLoaded",()=>{
+            const wynik = document.getElementById("wynik");
+
+            document.getElementById("ok").addEventListener("click",()=>{
+                let rower = document.getElementById("rowery").value;
+
+                class Rower{
+                    constructor(nazwa,sciezkaZdjecia,informacja){
+                        this.nazwa = nazwa;
+                        this.sciezkaZdjecia = sciezkaZdjecia;
+                        this.informacja = informacja;
+                    }
+                    wyswietl(){
+                        wynik.innerHTML = "<h2>"+this.nazwa+"</h2><p> Rozmiar koła: "+this.informacja+"</p><img src='"+this.sciezkaZdjecia+"' alt='"+this.nazwa+"'>";
+                    }
+                }
+                class Rower1 extends Rower {
+                    wyswietl(){
+                        wynik.innerHTML = "<h2>"+this.nazwa+"</h2><p> Rozmiar koła: "+this.informacja+"</p><img src='"+this.sciezkaZdjecia+"' alt='"+this.nazwa+"'>";
+                    }
+                }
+                class Rower2 extends Rower {
+                    wyswietl(){
+                        wynik.innerHTML = "<h2>"+this.nazwa+"</h2><p> Rozmiar koła: "+this.informacja+"</p><img src='"+this.sciezkaZdjecia+"' alt='"+this.nazwa+"'>";
+                    }
+                }
+                class Rower3 extends Rower {
+                    wyswietl(){
+                        wynik.innerHTML = "<h2>"+this.nazwa+"</h2><p> Rozmiar koła: "+this.informacja+"</p><img src='"+this.sciezkaZdjecia+"' alt='"+this.nazwa+"'>";
+                    }
+                }
+                class Rower4 extends Rower {
+                    wyswietl(){
+                        wynik.innerHTML = "<h2>"+this.nazwa+"</h2><p> Rozmiar koła: "+this.informacja+"</p><img src='"+this.sciezkaZdjecia+"' alt='"+this.nazwa+"'>";
+                    }
+                }
+                class Rower5 extends Rower {
+                    wyswietl(){
+                        wynik.innerHTML = "<h2>"+this.nazwa+"</h2><p> Rozmiar koła: "+this.informacja+"</p><img src='"+this.sciezkaZdjecia+"' alt='"+this.nazwa+"'>";
+                    }
+                }
+                
+                class FactoryRowerow{
+                    static wybor(nazwa,sciezkaZdjecia,informacja){
+                        switch (rower) {
+                            case "rower1":
+                                return new Rower1(nazwa,sciezkaZdjecia,informacja);
+                            case "rower2":
+                                return new Rower2(nazwa,sciezkaZdjecia,informacja);
+                            case "rower3":
+                                return new Rower3(nazwa,sciezkaZdjecia,informacja);
+                            case "rower4":
+                                return new Rower4(nazwa,sciezkaZdjecia,informacja);
+                            case "rower5":
+                                return new Rower5(nazwa,sciezkaZdjecia,informacja);
+                            default:
+                                throw new Error("Nieznany rower");
+                        }
+                    }
+                }   
+                
+                switch (rower) {
+                    case "rower1":
+                        const Giant = FactoryRowerow.wybor("Giant Talon 29", "./images/giant.jpg",29);
+                        Giant.wyswietl();
+                        break;
+                    case "rower2":
+                        const Trek = FactoryRowerow.wybor("Trek Marlin 7", "./images/trek.jpg",28);
+                        Trek.wyswietl();
+                        break;
+                    case "rower3":
+                        const Specialized = FactoryRowerow.wybor("Specialized Rockhopper", "./images/specialized.jpg",30);
+                        Specialized.wyswietl();
+                        break;
+                    case "rower4":
+                        const Kross = FactoryRowerow.wybor("Kross Level", "./images/kross.jpg",26);
+                        Kross.wyswietl();
+                        break;
+                    case "rower5":
+                        const Scott = FactoryRowerow.wybor("Scott Aspect 950", "./images/scott.jpg",27.5);
+                        Scott.wyswietl();
+                        break;
+                    default:
+                        throw new Error("Nieznany rower");
+                    }
+            });
+        });
+    </script>
+</body>
+</html>
