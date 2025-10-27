@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //Marcel Szczerek, Grupa 3, 27.10.2025 4CT
+        /*
+        Za czasów króla Sobieskiego powstało wiele kaplic i miejsc w których król się zatrzymał.
+        Napisz aplikacje która posiada fasade, przez którą przejeżdżali generałowie króla Sobieskiego
+        W pierwszym miejscu zatrzymania się króla spotkał w kaplicy 2 generałów.
+        W drugim miejscu zatrzymania króla spotkał 1 swojego generała.
+        W trzecim miejscu spotkał 4 generałów.
+        Oblicz ilu łącznie generałów spotkał król Sobieski uwzględniając to we wzorcu fasady
+        */
+        document.addEventListener("DOMContentLoaded",()=>{
+            class Kaplica1 {
+                iluGeneralow() {
+                    return 2;
+                }
+            }
+            class Kaplica2 {
+                iluGeneralow() {
+                    return 1;
+                }
+            }
+            class Kaplica3 {
+                iluGeneralow() {
+                    return 4;
+                }
+            }
+
+            class FasadaKrola {
+                constructor() {
+                    this.kaplica1 = new Kaplica1();
+                    this.kaplica2 = new Kaplica2();
+                    this.kaplica3 = new Kaplica3();
+                }
+                pokazGeneralow(){
+                    const generalowie1 = this.kaplica1.iluGeneralow();
+                    const generalowie2 = this.kaplica2.iluGeneralow();
+                    const generalowie3 = this.kaplica3.iluGeneralow();
+                    const generalowie = (generalowie1 + generalowie2) + generalowie3;
+                    return generalowie;
+                }
+            }
+
+            const fasadaKrola = new FasadaKrola();
+            const generalowie = fasadaKrola.pokazGeneralow();
+            console.log(`Król Sobieski spotkał ${generalowie} generałow podczas swojej podróży`);
+            
+       });
+    </script>
+</body>
+</html>
