@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Przedmioty do pakowania:</h2>
+    <div id="do_pakowania">
+
+    </div>
+    <h2>Zawartośc plecaka:</h2>
+    <div id="wynik">
+
+    </div>
+    <script>
+        /*
+        
+        */
+        document.addEventListener("DOMContentLoaded", function() {
+            const do_pakowania = document.getElementById("do_pakowania");
+            const wynik = document.getElementById("wynik");
+            const rzeczy_do_pakowania = [
+                { nazwa: "Lusterko", cena: 20, waga: 1, get wartosc(){return this.cena / this.waga}},
+                { nazwa: "Skarpety", cena: 30, waga: 1, get wartosc(){return this.cena / this.waga}},
+                { nazwa: "Telefon", cena: 250, waga: 2, get wartosc(){return this.cena / this.waga} },
+                { nazwa: "Woda", cena: 10, waga: 2, get wartosc(){return this.cena / this.waga} },
+                { nazwa: "Nóż", cena: 150, waga: 4, get wartosc(){return this.cena / this.waga} },
+                { nazwa: "Laptop", cena: 1500, waga: 5, get wartosc(){return this.cena / this.waga} },
+                { nazwa: "Kompas", cena: 150, waga: 2, get wartosc(){return this.cena / this.waga} },
+            ].sort((a,b)=>b.wartosc - a.wartosc);
+
+            rzeczy_do_pakowania.forEach(function(el) {
+                do_pakowania.innerHTML += el.nazwa + " " + el.cena + " " + el.waga + " " + el.wartosc + "<br>";
+            });
+
+            const max_waga_plecaka = 10;
+            let zawartosc_plecaka = [];
+            let aktualna_waga = 0;
+            for(const rzecz of rzeczy_do_pakowania) {
+                if(aktualna_waga + rzecz.waga <= max_waga_plecaka) {
+                    zawartosc_plecaka.push(rzecz);
+                    aktualna_waga += rzecz.waga;
+                }
+            }
+
+            zawartosc_plecaka.forEach(function(el) {
+            wynik.innerHTML += el.nazwa + " " + el.cena + " " + el.waga + " " + el.wartosc + "<br>";
+            });
+        });
+    </script>
+</body>
+</html>
