@@ -95,7 +95,6 @@
         .right {
             background: #e8f5e9;
             border: 1px solid #b9e0c1;
-            overflow-y: scroll;
         }
 
         .right .item {
@@ -106,10 +105,6 @@
         .right .item:hover {
             background: #c9f0d1;
         }
-        .left{
-            overflow-y: scroll;
-        }
-
         /* Responsywność */
         @media (max-width: 800px) {
             .hero {
@@ -204,11 +199,11 @@
                 do_pakowania.innerHTML += "<div class='item'>" + el.nazwa + " " + el.cena + "zł " + el.waga + "kg </div> <br>";
             });
 
-            const max_uciag_kuriera = 100;
+            const max_uciag_kuriera = 10;
             let co_bierze_kurier = [];
             let aktualna_waga = 0;
             for(const rzecz of posortowane_wyliczone) {
-                if(aktualna_waga + rzecz.waga <= max_waga_plecaka) {
+                if(aktualna_waga + rzecz.waga <= max_uciag_kuriera) {
                     co_bierze_kurier.push(rzecz);
                     aktualna_waga += rzecz.waga;
                 }
