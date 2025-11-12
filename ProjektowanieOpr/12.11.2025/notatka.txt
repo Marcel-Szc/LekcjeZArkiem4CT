@@ -1,0 +1,10 @@
+Temat: Docker
+ 1. Dockerfile:
+    - Własny obraz - image
+    - Kontener "Node"
+    - jedna usługa
+    - Kontener -> Porty(3000) OS -> porty(3000)
+ 2. Docker-compose.yml:
+    - kilka obrazów
+    - kiklka kontenerów
+    - wiele usług
