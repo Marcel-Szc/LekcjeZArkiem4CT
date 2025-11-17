@@ -1,0 +1,2 @@
+Temat: obserwator - wzorce projektowe
+Wrzozec Obserwator jest związany z relacją obiektów: "Jeden do Wielu"

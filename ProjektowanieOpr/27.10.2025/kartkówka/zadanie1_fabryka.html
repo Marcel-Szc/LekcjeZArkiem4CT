@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //Marcel Szczerek, Grupa 3, 27.10.2025 4CT
+        /* 
+        W pewnej Wiosce wybudowano fabryke pantofelka.
+        Fabryka działa prężnie i produkuje na rok 5 elementów z fabryki
+        Fabryka posiada następujące metody: opis, czas życia.
+        Każdy obiekt wyprodukowany z fabryki prezentuje się na konsoli tylko 3 sekundy.
+        */
+       document.addEventListener("DOMContentLoaded",()=>{
+            class Pantofelki{
+                constructor(opis,czas){
+                    this.opis = opis;
+                    this.czas = czas
+                }
+            }
+            class Pantofelek1 extends Pantofelki{
+                prezentujPantofla(){
+                    return `Opis pantofelka nr1: ${this.opis}, czas jego życia: ${this.czas}`;
+                }
+            }
+            class Pantofelek2 extends Pantofelki{
+                prezentujPantofla(){
+                    return `Opis pantofelka nr2: ${this.opis}, czas jego życia: ${this.czas}`;
+                }
+            }
+            class Pantofelek3 extends Pantofelki{
+                prezentujPantofla(){
+                    return `Opis pantofelka nr3: ${this.opis}, czas jego życia: ${this.czas}`;
+                }
+            }
+            class Pantofelek4 extends Pantofelki{
+                prezentujPantofla(){
+                    return `Opis pantofelka nr4: ${this.opis}, czas jego życia: ${this.czas}`;
+                }
+            }
+            class Pantofelek5 extends Pantofelki{
+                prezentujPantofla(){
+                    return `Opis pantofelka nr5: ${this.opis}, czas jego życia: ${this.czas}`;
+                }
+            }
+
+            class FabrykaPantofelków{
+                wyswietlPantofla() {
+                    let ListaPantofli = new Array();
+
+                    const pantofelek1 = new Pantofelek1("mały, czarny","3 minuty");
+                    ListaPantofli.push(pantofelek1);
+                    const pantofelek2 = new Pantofelek2("duży, czarny","1 minuta");
+                    ListaPantofli.push(pantofelek2);
+                    const pantofelek3 = new Pantofelek3("mały, biały","2 minuty");
+                    ListaPantofli.push(pantofelek3);
+                    const pantofelek4 = new Pantofelek4("średni, szary","30 minut");
+                    ListaPantofli.push(pantofelek4);
+                    const pantofelek5 = new Pantofelek5("sredni, czarny","8 minut");
+                    ListaPantofli.push(pantofelek5);
+
+                    ListaPantofli.forEach(pantofel => {
+                        console.log(pantofel.prezentujPantofla()) 
+                    });
+                }
+            }
+
+            const fabrykaPantofelkow = new FabrykaPantofelków();
+            fabrykaPantofelkow.wyswietlPantofla();
+       });
+    </script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="wynik"></div>
+    <script>
+        document.addEventListener("DOMContentLoaded",()=>{
+            const wynik = document.getElementById("wynik");
+
+            class Subject {
+                constructor() {
+                    this.observers = [];
+                }
+                subscribe(observer){
+                    this.observers.push(observer);
+                }
+                unsubscribe(observer){
+                    this.observers = this.observers.filter(obs => obs!==observer) ;
+                }
+                notify(data){
+                    this.observers.forEach(observer => observer.update(data));
+                }
+            }
+            
+            class Observer{
+                constructor(name){
+                    this.name = name
+                }
+                update(data){
+                    wynik.innerText += `${this.name} otrzymał powiadomienie: ${data}\n`;
+                }
+            }
+       
+            //test
+            const subject = new Subject();
+            const obs1 = new Observer("Arkadiusz");
+            const obs2 = new Observer("Dariusz");
+            const obs3 = new Observer("Grzegorz");
+            const obs4 = new Observer("Zygmunt");
+
+            subject.subscribe(obs1);
+            subject.subscribe(obs2);
+            subject.subscribe(obs3);
+            subject.subscribe(obs4);
+
+            subject.notify("TS PMO");
+
+            subject.unsubscribe(obs3);
+
+             subject.notify("*W Speed*");
+
+        });
+    </script>
+</body>
+</html>

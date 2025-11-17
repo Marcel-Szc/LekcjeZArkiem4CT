@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* Resetowanie marginesów i czcionek */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Inter", "Segoe UI", Arial, sans-serif;
+        }
+
+        /* Ogólne tło i kolorystyka */
+        body {
+            background: #f4f6fa;
+            color: #333;
+            padding: 20px;
+        }
+
+        /* Nagłówek główny */
+        h1 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            color: #1e2a78;
+        }
+
+        /* Kontener główny */
+        .hero {
+            display: flex;
+            justify-content: space-between;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        /* Sekcje po lewej i prawej */
+        .hero section {
+            background: #fff;
+            padding: 25px;
+            flex: 1 1 45%;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            min-width: 320px;
+        }
+
+        /* Nagłówki sekcji */
+        .hero h2 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: #1e2a78;
+            border-bottom: 2px solid #1e2a78;
+            padding-bottom: 8px;
+        }
+
+        /* Kontenery list towarów */
+        #do_pakowania, 
+        #wynik {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        /* Pojedynczy element towaru */
+        .item {
+            background: #f0f3ff;
+            border-left: 5px solid #4a6cff;
+            padding: 10px 15px;
+            border-radius: 6px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.2s ease;
+        }
+
+        .item:hover {
+            background: #e4e8ff;
+            transform: scale(1.01);
+        }
+
+        /* Nazwa towaru */
+        .item .nazwa {
+            font-weight: 600;
+        }
+
+        /* Cena i waga */
+        .item .dane {
+            font-size: 0.9rem;
+            color: #555;
+        }
+
+        /* Styl dla prawej sekcji (kurier) */
+        .right {
+            background: #e8f5e9;
+            border: 1px solid #b9e0c1;
+        }
+
+        .right .item {
+            background: #dcf5e1;
+            border-left-color: #37b24d;
+        }
+
+        .right .item:hover {
+            background: #c9f0d1;
+        }
+        /* Responsywność */
+        @media (max-width: 800px) {
+            .hero {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Kurier</h1>
+    <section class="hero">
+        <section class="left">
+            <h2>Przedmioty do pakowania:</h2>
+            <div id="do_pakowania">
+
+            </div>
+        </section>
+        <section class="right">
+            <h2>Co wziął kurkier:</h2>
+            <div id="wynik">
+
+            </div>
+        </section>
+    </section>
+    <script>
+        /*
+        Wygeneruj z internetu przykładową listę towarów która posiada: nazwe, cene i wage. Ilosc towarów to około 50.
+        Maksymany transport którym kurier zabierze elementy to 100kg.
+        Kurier zabierze tylko najbardziej wartościowe przedmioty (wartość = cena/waga).
+        Całość zaimplementuj w postaci strony internetowej html + js
+        */
+        document.addEventListener("DOMContentLoaded", function() {
+            const do_pakowania = document.getElementById("do_pakowania");
+            const wynik = document.getElementById("wynik");
+            const rzeczy_do_pakowania = [
+                {"nazwa": "Mleko 2%", "cena": 45.00, "waga": 10.00},
+                {"nazwa": "Chleb pełnoziarnisty", "cena": 32.00, "waga": 5.00},
+                {"nazwa": "Jaja klasy M", "cena": 98.00, "waga": 7.00},
+                {"nazwa": "Masło 82% tłuszczu", "cena": 64.00, "waga": 2.00},
+                {"nazwa": "Ser żółty Gouda", "cena": 285.00, "waga": 10.00},
+                {"nazwa": "Jogurt naturalny", "cena": 39.00, "waga": 4.00},
+                {"nazwa": "Makaron spaghetti", "cena": 50.00, "waga": 5.00},
+                {"nazwa": "Ryż basmati", "cena": 123.00, "waga": 10.00},
+                {"nazwa": "Cukier biały", "cena": 48.00, "waga": 10.00},
+                {"nazwa": "Mąka pszenna typ 500", "cena": 71.00, "waga": 20.00},
+                {"nazwa": "Olej rzepakowy", "cena": 147.00, "waga": 9.20},
+                {"nazwa": "Pomidory świeże", "cena": 85.00, "waga": 10.00},
+                {"nazwa": "Ogórki gruntowe", "cena": 59.00, "waga": 10.00},
+                {"nazwa": "Jabłka czerwone", "cena": 62.00, "waga": 10.00},
+                {"nazwa": "Banany", "cena": 55.00, "waga": 10.00},
+                {"nazwa": "Kurczak świeży tusza", "cena": 240.00, "waga": 12.00},
+                {"nazwa": "Filet z łososia", "cena": 399.00, "waga": 5.00},
+                {"nazwa": "Ziemniaki luzem", "cena": 100.00, "waga": 50.00},
+                {"nazwa": "Czekolada mleczna", "cena": 46.00, "waga": 1.00},
+                {"nazwa": "Orzechy włoskie", "cena": 178.00, "waga": 2.00},
+                {"nazwa": "Płatki owsiane", "cena": 82.00, "waga": 5.00},
+                {"nazwa": "Kawa mielona", "cena": 219.00, "waga": 2.50},
+                {"nazwa": "Herbata czarna", "cena": 96.00, "waga": 2.00},
+                {"nazwa": "Sok pomarańczowy", "cena": 75.00, "waga": 10.00},
+                {"nazwa": "Woda mineralna gazowana", "cena": 29.00, "waga": 15.00},
+                {"nazwa": "Papier toaletowy", "cena": 125.00, "waga": 12.00},
+                {"nazwa": "Świeży chleb żytni", "cena": 48.00, "waga": 7.00},
+                {"nazwa": "Ser feta w solance", "cena": 79.00, "waga": 2.00},
+                {"nazwa": "Miód wielokwiatowy", "cena": 184.00, "waga": 3.00},
+                {"nazwa": "Jogurt owocowy", "cena": 29.00, "waga": 1.50},
+                {"nazwa": "Masło orzechowe", "cena": 156.00, "waga": 3.50},
+                {"nazwa": "Majonez", "cena": 81.00, "waga": 4.00},
+                {"nazwa": "Ketchup", "cena": 67.00, "waga": 5.00},
+                {"nazwa": "Mleko roślinne (sojowe)", "cena": 83.00, "waga": 10.00},
+                {"nazwa": "Jogurt grecki", "cena": 112.00, "waga": 4.00},
+                {"nazwa": "Serek homogenizowany", "cena": 34.00, "waga": 1.50},
+                {"nazwa": "Granola z owocami", "cena": 130.00, "waga": 3.00},
+                {"nazwa": "Ciastko kruche", "cena": 55.00, "waga": 2.00},
+                {"nazwa": "Chipsy ziemniaczane", "cena": 79.00, "waga": 1.40},
+                {"nazwa": "Mieszanka studencka", "cena": 145.00, "waga": 2.50},
+                {"nazwa": "Wędliny drobiowe", "cena": 97.00, "waga": 1.50},
+                {"nazwa": "Parówki", "cena": 82.00, "waga": 3.00},
+                {"nazwa": "Ser Mozzarella", "cena": 53.00, "waga": 1.30},
+                {"nazwa": "Sos sojowy", "cena": 49.00, "waga": 1.50},
+                {"nazwa": "Płatki kukurydziane", "cena": 102.00, "waga": 3.80},
+                {"nazwa": "Ryba dorsz filety", "cena": 320.00, "waga": 10.00},
+                {"nazwa": "Kawa rozpuszczalna", "cena": 299.00, "waga": 2.00},
+                {"nazwa": "Herbata zielona", "cena": 124.00, "waga": 2.00},
+                {"nazwa": "Makaron pełnoziarnisty", "cena": 61.00, "waga": 5.00},
+                {"nazwa": "Czekolada gorzka 70%", "cena": 52.00, "waga": 1.00}
+            ];
+
+            const posortowane_wyliczone = rzeczy_do_pakowania.map(item => ({
+                    ...item, wartosc: item.cena / item.waga
+            })).sort((a,b)=>b.wartosc - a.wartosc);
+
+            posortowane_wyliczone.forEach(function(el) {
+                do_pakowania.innerHTML += "<div class='item'>" + el.nazwa + " " + el.cena + "zł " + el.waga + "kg </div> <br>";
+            });
+
+            const max_uciag_kuriera = 100;
+            let co_bierze_kurier = [];
+            let aktualna_waga = 0;
+            for(const rzecz of posortowane_wyliczone) {
+                if(aktualna_waga + rzecz.waga <= max_uciag_kuriera) {
+                    co_bierze_kurier.push(rzecz);
+                    aktualna_waga += rzecz.waga;
+                }
+            }
+
+            co_bierze_kurier.forEach(function(el) {
+            wynik.innerHTML += "<div class='item'>" + el.nazwa + " " + el.cena + "zł " + el.waga + "kg </div> <br>";
+            });
+           
+        });
+    </script>
+</body>
+</html>

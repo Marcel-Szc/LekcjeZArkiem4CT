@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wywiadówka</title>
+    <style>
+        /* Styles for zadanie1.html - responsive, accessible, and modern */
+:root{
+    --bg:#f5f7fb;
+    --card:#ffffff;
+    --accent:#2b6cb0; /* blue */
+    --accent-2:#2c7a7b; /* teal */
+    --text:#1f2937;
+    --muted:#59626b;
+    --radius:10px;
+    --shadow: 0 6px 18px rgba(31,41,55,0.08);
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+    margin:0;
+    font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    background: linear-gradient(180deg,var(--bg),#e9eef6);
+    color:var(--text);
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+    padding:32px 16px;
+}
+
+.container{
+    max-width:900px;
+    margin:0 auto;
+    background:linear-gradient(180deg, rgba(255,255,255,0.9), var(--card));
+    border-radius:var(--radius);
+    box-shadow:var(--shadow);
+    padding:28px;
+}
+
+h2{
+    margin:0 0 16px 0;
+    font-size:1.6rem;
+    color:var(--accent-2);
+}
+
+/* form area */
+label{display:inline-block;margin-right:8px;color:var(--muted);font-weight:600}
+select{
+    padding:8px 10px;
+    border-radius:8px;
+    border:1px solid #d0d7df;
+    background: #fff;
+    font-size:1rem;
+    outline:none;
+}
+
+button{
+    margin-left:10px;
+    padding:8px 14px;
+    background:var(--accent);
+    color:#fff;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+    font-weight:600;
+    box-shadow: 0 6px 12px rgba(43,108,176,0.12);
+    transition: transform .12s ease, box-shadow .12s ease, background-color .12s ease;
+}
+button:hover{transform:translateY(-2px);box-shadow:0 10px 20px rgba(43,108,176,0.12)}
+button:active{transform:translateY(0)}
+button:focus{outline:2px solid rgba(43,108,176,0.18);outline-offset:2px}
+
+.klasy{
+    margin-top:20px;
+    display:grid;
+    grid-template-columns:1fr;
+    gap:14px;
+}
+
+.klasa{
+    background:var(--card);
+    border-radius:12px;
+    padding:16px;
+    border:1px solid #eef3fa;
+}
+
+.klasa h3{margin:0 0 10px 0;color:var(--accent)}
+
+#lista{
+    color:var(--text);
+    min-height:46px;
+}
+
+ul{margin:0;padding-left:20px}
+li{margin:6px 0;padding:6px 10px;border-radius:8px;background:linear-gradient(90deg,#f8fbff,#ffffff);border:1px solid #eef4fb}
+
+/* Responsive layout: place classes in two columns on larger screens */
+@media(min-width:720px){
+    .klasy{grid-template-columns:repeat(2,1fr)}
+}
+
+/* small utility */
+.muted{color:var(--muted);font-size:.9rem}
+
+/* focus visibility for keyboard users */
+:focus{outline-offset:3px}
+
+/* subtle fade-in on load */
+.container{opacity:0;transform:translateY(6px);animation:fadeIn .36s ease forwards}
+@keyframes fadeIn{to{opacity:1;transform:none}}
+
+/* High contrast tweaks */
+@media (prefers-contrast: more){
+    button{box-shadow:none}
+}
+
+/* small print */
+.note{font-size:.9rem;color:var(--muted);margin-top:12px}
+
+/* End of styles */
+
+    </style>
+</head>
+<body>
+    <section class="container">
+        <h2>Wywiadówka</h2>
+        
+        <div>
+            <label>Wybierz klasę:</label>
+            <select id="selectKlasa">
+                <option value="">wybierz</option>
+                <option value="1CT">1CT</option>
+                <option value="2CT">2CT</option>
+                <option value="3CT">3CT</option>
+                <option value="4CT">4CT</option>
+            </select>
+            <button onclick="pokazUczniow()">OK</button>
+        </div>
+
+        <div class="klasy">
+            <div class="klasa">
+                <h3>Klasa</h3>
+                <div id="lista">-</div>
+            </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        const uczniowie = {
+            '1CT': ['Grzegorz Floryda'],
+            '2CT': ['Darren Watkins', 'Khaby Lame'],
+            '3CT': ['Charlie Kirk', 'Sam Witwicky', 'Bob'],
+            '4CT': ['Catold Kitler', 'Józef Stary', 'Józio Młody', 'Bożydar Cwany']
+        };
+
+        class Subject {
+            constructor() {
+                this.observers = [];
+            }
+            subscribe(observer) {
+                this.observers.push(observer);
+            }
+            unsubscribe(observer) {
+                this.observers = this.observers.filter(o => o !== observer);
+            }
+            notify(klasa, dane) {
+                this.observers.forEach(observer => observer.update(klasa, dane));
+            }
+        }
+
+        class Observer {
+            constructor(nazwaKlasy, idElementu) {
+                this.nazwaKlasy = nazwaKlasy;
+                this.element = document.getElementById(idElementu);
+            }
+            update(klasa, dane) {
+                if (this.nazwaKlasy === klasa) {
+                    let html = '<ul>';
+                    dane.forEach(uczen => {
+                        html += '<li>' + uczen + '</li>';
+                    });
+                    html += '</ul>';
+                    this.element.innerHTML = html;
+                }
+            }
+        }
+
+        const system = new Subject();
+        const obs1 = new Observer('1CT', 'lista');
+        const obs2 = new Observer('2CT', 'lista');
+        const obs3 = new Observer('3CT', 'lista');
+        const obs4 = new Observer('4CT', 'lista');
+
+        system.subscribe(obs1);
+        system.subscribe(obs2);
+        system.subscribe(obs3);
+        system.subscribe(obs4);
+
+        function pokazUczniow() {
+            const wybor = document.getElementById('selectKlasa').value;
+            if (wybor) {
+                system.notify(wybor, uczniowie[wybor]);
+            }
+        }
+    </script>
+</body>
+</html>
