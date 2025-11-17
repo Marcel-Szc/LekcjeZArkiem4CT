@@ -14,4 +14,8 @@ const [imie,setTimie] = useState("") to znaczy że imie = "" jest pusta, 1 param
 
  <input onChange={(e)=>Setlicznik(e.target.value)} />
 
-Utwórz kalkulator wyznaczający pole koła, pole rombu, pole trójkąta i pole prostokąta, energia ptencjalna, energia kinetyczna
+Utwórz kalkulator wyznaczający pole koła, pole rombu, pole trójkąta i pole prostokąta, 
+energia ptencjalna, energia kinetyczna
+
+Utwóz aplikacje na ReactJSktóra używa Hooka useState() i useEffect(). Aplikacja prezentuje 2 odrębne komponenty,
+ które zmieniają się przez Selecta nastronie głównej. Komponent prezentuje Imie, Nazwisko i Fotografie
