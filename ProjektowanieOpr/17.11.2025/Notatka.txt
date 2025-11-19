@@ -1,0 +1,21 @@
+Temat: HOOK's useState
+
+useState() - Służy do utrzymania stanu komponentu
+Redux - Służy do utrzymania stanu aplikacji
+
+useEffet() jest to funkcja która renderuje na nowo np. komponent na
+podstawie dependencji (zależności)
+
+-----------------------------------------------
+
+const [imie,setImie] = useState("inicjalna wartość startowa")
+const [imie,setTimie] = useState("") to znaczy że imie = "" jest pusta, 1 paramter imie to zmienna,
+ 2 parametr to funkcja, która służy do zmiany paramertu 1
+
+ <input onChange={(e)=>Setlicznik(e.target.value)} />
+
+Utwórz kalkulator wyznaczający pole koła, pole rombu, pole trójkąta i pole prostokąta, 
+energia ptencjalna, energia kinetyczna
+
+Utwóz aplikacje na ReactJSktóra używa Hooka useState() i useEffect(). Aplikacja prezentuje 2 odrębne komponenty,
+ które zmieniają się przez Selecta nastronie głównej. Komponent prezentuje Imie, Nazwisko i Fotografie
