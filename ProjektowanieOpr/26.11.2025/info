@@ -1,0 +1,5 @@
+Budowanie obrazu z Dockera
+docker build -t arkuszegz .
+
+uruchamianie aplikacji w kontenerze
+docker run --rm arkuszegz
