@@ -1,0 +1,10 @@
+<p>normalny works!</p>
+<table>
+    <tr *ngFor="let opis of opisy">
+        <td>{{opis.imie}}</td>
+        <td>{{opis.nazwisko}}</td>
+        <td>{{opis.wiek}}</td>
+        <td>{{opis.przedmiot}}</td>
+        <td><img [src]="opis.foto" [alt]="opis.imie" class="foto"></td>
+    </tr>
+</table>

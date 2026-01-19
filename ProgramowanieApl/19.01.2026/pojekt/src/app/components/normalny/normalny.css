@@ -1,0 +1,7 @@
+.foto {
+    border: solid, rgb(78, 78, 78), 1px;
+    border-radius: 20px;
+    padding: 15px;
+    width: 150px;
+    height: auto;
+}
