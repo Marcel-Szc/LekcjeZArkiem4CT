@@ -7,5 +7,12 @@ import { Component } from '@angular/core';
   styleUrl: './animacjadruga.css',
 })
 export class Animacjadruga {
+    nazwaAnimacji: String = "Animacja Pierwsza - PZS1";
+    nazwaEfektu: String = "Przeżroczystość";
+    foto: String = "public/zdjecia/tatry2.jpg";
+    opacity: boolean = false;
 
+    toggleOpacity(){
+      this.opacity = !this.opacity;
+    }
 }

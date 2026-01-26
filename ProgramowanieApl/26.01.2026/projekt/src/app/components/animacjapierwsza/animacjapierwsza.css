@@ -1,0 +1,12 @@
+.zdjecia{
+    width: 250px;
+    height: auto;
+    border: 1px solid greenyellow;
+    border-radius: 20px;
+    padding: 15px;
+    cursor: pointer;
+    transition: transform 0.4s ease;
+}
+.zdjecia.zoom{
+    transform: scale(2);
+}
