@@ -1,0 +1,14 @@
+.foto{
+    width: 250px;
+    height: auto;
+    transition: transform 0.5s ease;
+}
+.foto.Splaszczenie{
+    transform: rotateX(45deg);
+}
+.foto.Zgniecenie{
+    transform: rotateY(45deg);
+}
+.foto.Zoom{
+    transform: scale(2);
+}

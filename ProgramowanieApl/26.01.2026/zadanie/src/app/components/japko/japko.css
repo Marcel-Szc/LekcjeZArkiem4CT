@@ -1,0 +1,14 @@
+.foto{
+    width: 250px;
+    height: auto;
+    opacity: 1;
+}
+.foto.OpaLow{
+    opacity: 0.3;
+}
+.foto.OpaMed{
+    opacity: 0.5;
+}
+.foto.OpaHigh{
+    opacity: 0.7;
+}

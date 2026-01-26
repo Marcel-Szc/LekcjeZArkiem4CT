@@ -1,0 +1,14 @@
+.foto{
+    width: 250px;
+    height: auto;
+    transition: transform 0.5s ease;
+}
+.foto.DegL{
+    transform: rotate(-45deg);
+}
+.foto.DegP{
+    transform: rotate(45deg);
+}
+.foto.Prosty{
+    transform: rotate(90deg);
+}

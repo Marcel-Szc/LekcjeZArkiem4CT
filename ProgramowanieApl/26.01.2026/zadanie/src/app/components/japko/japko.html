@@ -1,0 +1,15 @@
+<h2>Japko:</h2>
+<table>
+    <tr>
+        <td>{{owoce[0].nazwaOwocu}}</td>
+        <td><img [src]="owoce[0].foto" [alt]="owoce[0].nazwaOwocu" (click)="toggleEfekt1()" [class.OpaLow] = "efekt1" class="foto"></td>
+    </tr>
+    <tr>
+        <td>{{owoce[1].nazwaOwocu}}</td>
+        <td><img [src]="owoce[1].foto" [alt]="owoce[1].nazwaOwocu" (click)="toggleEfekt2()" [class.OpaMed] = "efekt2" class="foto"></td>
+    </tr>
+    <tr>
+        <td>{{owoce[2].nazwaOwocu}}</td>
+        <td><img [src]="owoce[2].foto" [alt]="owoce[2].nazwaOwocu" (click)="toggleEfekt3()" [class.OpaHigh] = "efekt3" class="foto"></td>
+    </tr>
+</table>
