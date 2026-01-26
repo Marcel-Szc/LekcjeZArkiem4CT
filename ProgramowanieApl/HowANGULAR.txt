@@ -1,0 +1,7 @@
+npm install -g @angular/cli
+
+ng new projekt --standalone=false
+
+ng g c components/start
+
+ng serve
