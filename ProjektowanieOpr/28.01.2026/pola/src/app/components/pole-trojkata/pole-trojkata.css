@@ -1,0 +1,15 @@
+.okno{
+    width: 500px;
+    margin-top: 15px;
+    margin-left: auto;
+    margin-right:auto;
+    border: 1px black solid;
+    border-radius: 25px;
+}
+.wynik{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    margin-left: 250px;
+}
+h3{
+    margin-left: 210px;
+}

@@ -1,0 +1,8 @@
+<div class="okno">
+    <h3>{{title}}</h3>
+    <input type="number" #liczba1 placeholder="podaj a">
+    <input type="number" #liczba2 placeholder="podaj b">
+    <input type="number" #liczba3 placeholder="podaj h">
+    <button (click)="trapez(+liczba1.value, +liczba2.value, +liczba3.value)">Oblicz dodawanie</button>
+    <p class="wynik">{{trapez(+liczba1.value, +liczba2.value, +liczba3.value)}}</p>
+</div>

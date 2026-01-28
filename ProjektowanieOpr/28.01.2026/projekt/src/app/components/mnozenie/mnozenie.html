@@ -1,0 +1,7 @@
+<div class="okno">
+    <h3>{{title}}</h3>
+    <input type="number" #liczba1 placeholder="podaj liczbe 1">
+    <input type="number" #liczba2 placeholder="podaj liczbe 2">
+    <button (click)="mnozenie(+liczba1.value, +liczba2.value)">Oblicz dodawanie</button>
+    <p class="wynik">{{mnozenie(+liczba1.value, +liczba2.value)}}</p>
+</div>
