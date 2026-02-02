@@ -1,0 +1,12 @@
+<h2>Formularz dodania rekordu do bazy</h2>
+<form (ngSubmit)="submitForm()">
+  <label for="imie">Imie: </label>
+  <input type="text" [(ngModel)]="user.imie" name="imie" required id="imie"><br/>
+  <label for="nazwisko">Nazwisko: </label>
+  <input type="text" [(ngModel)]="user.nazwisko" name="nazwisko" required id="nazwisko"><br/>
+  <label for="wiek">Wiek: </label>
+  <input type="number" [(ngModel)]="user.wiek" name="wiek" required id="wiek"><br/>
+
+  <button type="submit">Zapisz do bazy</button>
+</form>
+<router-outlet />
