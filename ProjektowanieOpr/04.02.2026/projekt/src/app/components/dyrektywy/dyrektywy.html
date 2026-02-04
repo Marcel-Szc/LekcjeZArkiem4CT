@@ -1,0 +1,11 @@
+<p>Dyrektywy</p>
+<div 
+    class="box"
+    [ngClass]="{active:isActive, inactive:!isActive}"
+    [ngStyle]="{borderColor:isActive ? 'green' : 'red'}"
+    >
+    <button (click)="isActive=!isActive">PRZEŁĄCZ</button>
+    <div *ngIf="isActive">
+        <p>Ten tekst jest widoczny gdy isActive jest prawdziwe </p>
+    </div>
+</div>

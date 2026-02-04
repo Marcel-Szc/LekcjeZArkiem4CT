@@ -1,0 +1,14 @@
+.box{
+    width: 200px;
+    height: auto;
+    margin: auto;
+    padding: 5px;
+    text-align: center;
+    border: 8px solid ;
+}
+.active{
+    border-color:green;
+}
+.inactive{
+    border-color: red;
+}
