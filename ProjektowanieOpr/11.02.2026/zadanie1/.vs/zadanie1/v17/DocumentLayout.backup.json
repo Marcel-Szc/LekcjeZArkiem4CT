@@ -1,0 +1,71 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\programista\\Documents\\4CT\\LekcjeZArkiem4CT\\ProjektowanieOpr\\11.02.2026\\zadanie1\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{38A2FF7D-4777-4B39-BD2F-321D69501D3E}|zadanie1\\zadanie1.csproj|c:\\users\\programista\\documents\\4ct\\lekcjezarkiem4ct\\projektowanieopr\\11.02.2026\\zadanie1\\zadanie1\\mainpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{38A2FF7D-4777-4B39-BD2F-321D69501D3E}|zadanie1\\zadanie1.csproj|solutionrelative:zadanie1\\mainpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{38A2FF7D-4777-4B39-BD2F-321D69501D3E}|zadanie1\\zadanie1.csproj|c:\\users\\programista\\documents\\4ct\\lekcjezarkiem4ct\\projektowanieopr\\11.02.2026\\zadanie1\\zadanie1\\mainpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{38A2FF7D-4777-4B39-BD2F-321D69501D3E}|zadanie1\\zadanie1.csproj|solutionrelative:zadanie1\\mainpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{38A2FF7D-4777-4B39-BD2F-321D69501D3E}|zadanie1\\zadanie1.csproj|c:\\users\\programista\\documents\\4ct\\lekcjezarkiem4ct\\projektowanieopr\\11.02.2026\\zadanie1\\zadanie1\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{38A2FF7D-4777-4B39-BD2F-321D69501D3E}|zadanie1\\zadanie1.csproj|solutionrelative:zadanie1\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "MainPage.xaml",
+              "DocumentMoniker": "C:\\Users\\programista\\Documents\\4CT\\LekcjeZArkiem4CT\\ProjektowanieOpr\\11.02.2026\\zadanie1\\zadanie1\\MainPage.xaml",
+              "RelativeDocumentMoniker": "zadanie1\\MainPage.xaml",
+              "ToolTip": "C:\\Users\\programista\\Documents\\4CT\\LekcjeZArkiem4CT\\ProjektowanieOpr\\11.02.2026\\zadanie1\\zadanie1\\MainPage.xaml",
+              "RelativeToolTip": "zadanie1\\MainPage.xaml",
+              "ViewState": "AgIAABUAAAAAAAAAAAAAwDYAAAAeAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-02-11T06:30:22.081Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "MainPage.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\programista\\Documents\\4CT\\LekcjeZArkiem4CT\\ProjektowanieOpr\\11.02.2026\\zadanie1\\zadanie1\\MainPage.xaml.cs",
+              "RelativeDocumentMoniker": "zadanie1\\MainPage.xaml.cs",
+              "ToolTip": "C:\\Users\\programista\\Documents\\4CT\\LekcjeZArkiem4CT\\ProjektowanieOpr\\11.02.2026\\zadanie1\\zadanie1\\MainPage.xaml.cs",
+              "RelativeToolTip": "zadanie1\\MainPage.xaml.cs",
+              "ViewState": "AgIAABkAAAAAAAAAAAAlwCsAAABGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-11T06:32:02.954Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "App.xaml",
+              "DocumentMoniker": "C:\\Users\\programista\\Documents\\4CT\\LekcjeZArkiem4CT\\ProjektowanieOpr\\11.02.2026\\zadanie1\\zadanie1\\App.xaml",
+              "RelativeDocumentMoniker": "zadanie1\\App.xaml",
+              "ToolTip": "C:\\Users\\programista\\Documents\\4CT\\LekcjeZArkiem4CT\\ProjektowanieOpr\\11.02.2026\\zadanie1\\zadanie1\\App.xaml",
+              "RelativeToolTip": "zadanie1\\App.xaml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-02-11T06:29:18.211Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

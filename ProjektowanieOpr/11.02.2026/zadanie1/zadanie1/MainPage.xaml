@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="zadanie1.MainPage"
+             Title = "Odliczanie...">
+
+    <ScrollView>
+        <VerticalStackLayout
+            Padding="30,0"
+            Spacing="25">
+            <Label 
+                x:Name="CounterLabel"
+                Text="Zaraz startujemy chopaki"
+                FontSize="32"
+                HorizontalOptions="Center"
+            />
+            <Button 
+                x:Name="CounterBtn"
+                Clicked="CounterBtn_Clicked"
+                SemanticProperties.Hint="To jest nowy przycisk"
+                HorizontalOptions="Fill"
+                FontSize="18"
+                CornerRadius="12"
+                TextColor="White"
+                Text="Uruchom odliczanie"
+            />
+            <Button 
+                x:Name="CounterBtnReset"
+                Clicked="OnReset_Clicked"
+                SemanticProperties.Hint="To jest nowy przycisk resetujący"
+                HorizontalOptions="Center"
+                FontSize="18"
+                CornerRadius="12"
+                TextColor="White"
+                Text="Resetuj odliczanie"
+            />
+            <Button 
+                 x:Name="CounterBtnStop"
+                 Clicked="Stop_Clicked"
+                 SemanticProperties.Hint="To jest nowy przycisk resetujący"
+                 HorizontalOptions="Center"
+                 FontSize="18"
+                 CornerRadius="12"
+                 TextColor="White"
+                 Text="Zatrzymaj/Kontynuuj odliczanie"
+             />
+            <Button 
+                 x:Name="CounterBtnColor"
+                 Clicked="CounterBtnColor_Clicked"
+                 SemanticProperties.Hint="To jest nowy przycisk resetujący"
+                 HorizontalOptions="Center"
+                 FontSize="18"
+                 CornerRadius="12"
+                 TextColor="White"
+                 Text="Zmień kolor odliczania"
+             />
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
