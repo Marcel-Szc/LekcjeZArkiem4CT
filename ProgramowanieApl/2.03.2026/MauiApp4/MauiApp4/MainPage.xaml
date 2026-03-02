@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiApp4.MainPage">
+
+    <ScrollView>
+        <VerticalStackLayout
+            Padding="30,0"
+            Spacing="25"
+            HorizontalOptions="Center">
+            <Frame
+                    x:Name="Photo1Frame"
+                    Padding="0"
+                    CornerRadius="10"
+                    BorderColor= "LightBlue"
+                    HasShadow="False"
+                    HeightRequest="150"
+                    WidthRequest="150"
+                    HorizontalOptions="Center">
+                <Image x:Name="Photo1" Source="photo1.jpg" Aspect="AspectFill"/>
+            </Frame>
+            <Frame
+                    x:Name="Photo2Frame"
+                    Padding="0"
+                    CornerRadius="10"
+                    BorderColor="LightPink"
+                    HasShadow="False"
+                    HeightRequest="150"
+                    WidthRequest="150"
+                    HorizontalOptions="Center">
+                    <Image x:Name="Photo2" Source="photo2.jpg" Aspect="AspectFill"/>
+           </Frame>
+
+            <Frame
+                     x:Name="Photo3Frame"
+                     Padding="0"
+                     CornerRadius="10"
+                     BorderColor="LightGreen"
+                     HasShadow="False"
+                     HeightRequest= "150"
+                     WidthRequest="150"
+                     HorizontalOptions="Center">
+                    <Image x:Name="Photo3" Source="photo3.jpg" Aspect="AspectFill"/>
+            </Frame>
+
+            <Frame
+                    x:Name="Photo4Frame"
+                    Padding="0"
+                    CornerRadius="10"
+                    BorderColor= "LightYellow"
+                    HasShadow="False"
+                    HeightRequest="150"
+                    WidthRequest="150"
+                    HorizontalOptions="Center">
+                    <Image x:Name="Photo4" Source="photo4.jpg" Aspect="AspectFill"/>
+            </Frame>
+                <!-- Przyciski zmiany stylu -->
+                <HorizontalStackLayout Spacing="15" HorizontalOptions="Center">
+                    <Button Text="Styl 1" Clicked="OnStylelClicked"/>
+                    <Button Text="Styl 2" Clicked="OnStyle2Clicked"/>
+                    <Button Text= "Styl 3" Clicked="OnStyle3Clicked"/>
+                    <Button Text="Styl 4" Clicked="OnStyle4Clicked"/>
+                </HorizontalStackLayout>
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
