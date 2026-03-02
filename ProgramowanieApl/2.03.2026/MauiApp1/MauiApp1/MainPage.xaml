@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiApp1.MainPage"
+             Title="Poznaj Button">
+
+    <ScrollView>
+        <VerticalStackLayout
+            Padding="15"
+            Spacing="20">
+            <Label
+                x: Name="StatusLabel"
+                Text="Status: gotowy"
+                FontSize="18"
+                FontAttributes="Bold"
+                HorizontalOptions="Center" />
+            <Button
+                Text="Kliknij mnie"
+                Clicked="OnClickMeClicked" />
+            <Button
+                Text="Zmień tekst"
+                Clicked="OnChangeTextClicked" />
+            <Button
+                Text="Zmień kolor"
+                Clicked="OnChangeColorClicked" />
+            <Button
+                Text="Włącz / Wyłącz"
+                Clicked="OnEnableDisableClicked" />
+            <Button
+                Text="Licznik kliknieć"
+                Clicked="OnCounterClicked" />
+            <Button
+                Text="Odliczanie"
+                Clicked="OnCountdownClicked"
+                />
+            <BoxView HeightRequest="1" Color="LightGray" />
+            <Label
+                Text="Wtaśnie uczysz się, co potrafi Button w .NET MAUI"
+                FontSize="14"
+                HorizontalOptions="Center"
+               TextColor="Gray" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

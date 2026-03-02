@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiApp3.MainPage">
+
+    <ScrollView>
+        <VerticalStackLayout
+            Padding="30,0"
+            Spacing="25">
+            <Button
+                Text=" Google"
+                Clicked="OnGoogleClicked"
+                TextColor="White"
+                FontAttributes="Bold"
+                HeightRequest="60"
+                WidthRequest="250"
+                CornerRadius="12">
+                    <Button.Background>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                            <GradientStop Color= "#4285F4" Offset="0.0" />
+                                            <GradientStop Color= "#34A853" Offset="1.0" />
+                        </LinearGradientBrush> 
+                    </Button.Background>
+                </Button>
+            <Button
+                Text=" Twitter"
+                Clicked="OnTwitterClicked"
+                TextColor= "White"
+                FontAttributes="Bold"
+                HeightRequest="60"
+                WidthRequest="60"
+                CornerRadius="30"
+                HorizontalOptions="Center">
+                    <Button.Background>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                            <GradientStop Color= "#1DA1F2" Offset="0.0"/>
+                            <GradientStop Color="#0d8ddb" Offset="1.0"/>
+                        </LinearGradientBrush>
+                    </Button.Background>
+                </Button>
+            <Button
+                Text="YT"
+                Clicked="OnYoutubeClicked"
+                TextColor= "White"
+                FontAttributes="Bold"
+                HeightRequest="80"
+                WidthRequest="80"
+                CornerRadius="40"
+                HorizontalOptions="Center">
+                    <Button.Background>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                            <GradientStop Color= "#FF0000" Offset="0.0"/>
+                                <GradientStop Color= "#FF5733" Offset="1.0"/>
+                        </LinearGradientBrush>
+                    </Button.Background>
+                </Button>
+            <Button
+                Text="GitHub"
+                Clicked="OnGitHubClicked"
+                TextColor= "White"
+                FontAttributes="Bold"
+                 HeightRequest="60"
+                WidthRequest="250"
+                CornerRadius="15">
+                    <Button.Background>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                            <GradientStop Color= "#333333" Offset="0.0"/>
+                            <GradientStop Color="#555555" Offset="1.0"/>
+                        </LinearGradientBrush>
+                    </Button.Background>
+                </Button>
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
