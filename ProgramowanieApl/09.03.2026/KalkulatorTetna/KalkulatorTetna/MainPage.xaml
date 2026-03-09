@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="KalkulatorTetna.MainPage">
+
+    <ScrollView>
+        <VerticalStackLayout
+            Padding="30,0"
+            Spacing="25"
+            BackgroundColor="White">
+            <Label 
+                Text="Kalkulator Tętna"
+                FontSize="50"
+                FontAttributes="Bold"
+                HorizontalOptions="Center"
+                TextColor="black"
+            />
+            <Label 
+                x:Name="Result"
+                Text="Prawidłowe Tętno: --"
+                FontSize="40"
+                FontAttributes="Bold"
+                HorizontalOptions="Center"
+                TextColor="Red"
+            />
+            <Entry 
+                x:Name="wiek"
+                Placeholder="Wiek"
+                HorizontalOptions="Center" 
+                Keyboard="Numeric"
+                WidthRequest="500"
+                TextColor="black"
+            />
+
+            <Entry 
+                x:Name="tetno"
+                Placeholder="Tętno spoczynkowe"
+                HorizontalOptions="Center" 
+                Keyboard="Numeric"
+                WidthRequest="500"
+                TextColor="black"
+            />
+            <Button 
+                Text="Oblicz tętno"
+                FontSize="24"
+                BackgroundColor="#E74C3C"
+                TextColor="White"
+                HeightRequest="60"
+                Clicked="Button_Clicked"
+            />
+            <BoxView 
+                 HeightRequest="5"    
+                 BackgroundColor="Gray"
+             />
+            <HorizontalStackLayout
+                HorizontalOptions="Center"
+                Padding="30"
+                Spacing="20"
+                >
+                <VerticalStackLayout>
+                    <Label 
+                        Text="Umiarkowane"
+                        FontSize="18"    
+                        HorizontalTextAlignment="Center"
+                        TextColor="black"
+                    />
+                    <Label 
+                        x:Name="ModerateLabel"
+                        Text="-- BPM"
+                        FontSize="18"    
+                        HorizontalTextAlignment="Center"
+                        TextColor="Orange"
+                    />
+                </VerticalStackLayout>
+                <VerticalStackLayout>
+                    <Label 
+                        Text="Intensywne"
+                        FontSize="18"    
+                        HorizontalTextAlignment="Center"
+                        TextColor="black"
+                    />
+                    <Label 
+                        x:Name="IntensiveLabel"
+                        Text="-- BPM"
+                        FontSize="18"    
+                        HorizontalTextAlignment="Center"
+                        TextColor="Green"
+                    />
+                </VerticalStackLayout>
+            </HorizontalStackLayout>
+            <BoxView 
+                HeightRequest="5"    
+                BackgroundColor="Gray"
+            />
+            <Label 
+                Text="Docelowe tętno przy wysiłku"
+                FontSize="16"
+                HorizontalTextAlignment="Center"
+                TextColor="Gray"
+            />
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="KlakulatorBiegacza.MainPage">
+
+    <ScrollView>
+        <VerticalStackLayout
+            Padding="30,0"
+            Spacing="25"
+            BackgroundColor="White">
+            <Label 
+                Text="Prawidłowe Tętno: --"
+                FontSize="40"
+                FontAttributes="Bold"
+                HorizontalOptions="Center"
+                TextColor="Blue"
+            />
+            <Entry 
+                x:Name="DistanceEntry"
+                Placeholder="Dystans(km)"
+                HorizontalOptions="Center" 
+                Keyboard="Numeric"
+                WidthRequest="500"
+                TextColor="black"
+            />
+            <Entry 
+                x:Name="TimeEntry"
+                Placeholder="Czas (minuty)"
+                HorizontalOptions="Center" 
+                Keyboard="Numeric"
+                WidthRequest="500"
+                TextColor="black"
+            />
+            <Button 
+                Text="Oblicz tętno"
+                FontSize="24"
+                BackgroundColor="#1F4ED8"
+                TextColor="White"
+                HeightRequest="60"
+                Clicked="Button_Clicked"
+            />
+            <BoxView 
+                 HeightRequest="5"    
+                 BackgroundColor="Gray"
+             />
+            <HorizontalStackLayout
+                HorizontalOptions="Center"
+                Padding="30"
+                Spacing="20"
+                >
+                <VerticalStackLayout>
+                    <Label 
+                        Text="Prędkość"
+                        FontSize="18"    
+                        HorizontalTextAlignment="Center"
+                        TextColor="black"
+                    />
+                    <Label 
+                        x:Name="SpeedLabel"
+                        Text="-- KM/H"
+                        FontSize="18"    
+                        HorizontalTextAlignment="Center"
+                        TextColor="Blue"
+                    />
+                </VerticalStackLayout>
+                <VerticalStackLayout>
+                    <Label 
+                        Text="Tempo"
+                        FontSize="18"    
+                        HorizontalTextAlignment="Center"
+                        TextColor="black"
+                    />
+                    <Label 
+                        x:Name="PaceLabel"
+                        Text="-- Min./KM"
+                        FontSize="18"    
+                        HorizontalTextAlignment="Center"
+                        TextColor="Orange"
+                    />
+                </VerticalStackLayout>
+            </HorizontalStackLayout>
+            <BoxView 
+                HeightRequest="5"    
+                BackgroundColor="Gray"
+            />
+            <Label 
+                Text="Docelowe tętno przy wysiłku"
+                FontSize="16"
+                HorizontalTextAlignment="Center"
+                TextColor="Gray"
+            />
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

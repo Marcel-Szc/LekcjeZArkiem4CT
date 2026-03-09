@@ -1,0 +1,1433 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🌱 Łącze internetowe — monitorowanie parametrów</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Source+Sans+3:wght@300;400;600;700&family=JetBrains+Mono:wght@400;600&display=swap');
+
+:root {
+  --spring-green: #4a9e3f;
+  --spring-light: #7bc96f;
+  --spring-pale: #e8f5e3;
+  --spring-mint: #f0faf0;
+  --earth-brown: #5d4e37;
+  --sky-blue: #4a90d9;
+  --sky-light: #b3d4fc;
+  --sun-yellow: #f5c842;
+  --sun-warm: #fff8e1;
+  --petal-pink: #f2a7b3;
+  --download-color: #2e7d32;
+  --upload-color: #1565c0;
+  --bg-main: #fafcf7;
+  --text-main: #2c3e2c;
+  --text-light: #5a6e5a;
+  --card-bg: #ffffff;
+  --shadow: 0 4px 24px rgba(74,158,63,0.08);
+  --shadow-hover: 0 8px 32px rgba(74,158,63,0.15);
+  --radius: 16px;
+  --xp-color: #e8a000;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+
+body {
+  font-family: 'Source Sans 3', sans-serif;
+  background: var(--bg-main);
+  color: var(--text-main);
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+.spring-bg {
+  position: fixed; top:0; left:0; width:100%; height:100%;
+  pointer-events: none; z-index:0; overflow:hidden;
+}
+.spring-bg .petal {
+  position: absolute;
+  width: 12px; height: 12px;
+  background: var(--petal-pink);
+  border-radius: 50% 0 50% 0;
+  opacity: 0.25;
+  animation: petalFall linear infinite;
+}
+@keyframes petalFall {
+  0% { transform: translateY(-20px) rotate(0deg); opacity:0; }
+  10% { opacity:0.3; }
+  90% { opacity:0.2; }
+  100% { transform: translateY(100vh) rotate(360deg); opacity:0; }
+}
+
+.hero {
+  position: relative; z-index:1;
+  background: linear-gradient(135deg, #2e6b28 0%, #4a9e3f 40%, #7bc96f 100%);
+  padding: 50px 20px 60px;
+  text-align: center;
+  overflow: hidden;
+}
+.hero::before {
+  content:''; position:absolute; bottom:0; left:0; width:100%; height:60px;
+  background: var(--bg-main);
+  clip-path: ellipse(55% 100% at 50% 100%);
+}
+.hero-icon { font-size: 56px; margin-bottom: 12px; filter: drop-shadow(0 4px 8px rgba(0,0,0,0.15)); }
+.hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.8rem, 4.5vw, 2.8rem);
+  color: #fff; font-weight: 900;
+  text-shadow: 0 2px 12px rgba(0,0,0,0.2);
+  margin-bottom: 8px;
+}
+.hero .subtitle {
+  color: rgba(255,255,255,0.9);
+  font-size: clamp(0.95rem, 2vw, 1.15rem);
+  font-weight: 300;
+  max-width: 620px; margin: 0 auto;
+}
+
+.xp-bar-container {
+  position: sticky; top:0; z-index:100;
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(74,158,63,0.15);
+  padding: 10px 20px;
+  display: flex; align-items: center; justify-content: center; gap:16px;
+  font-size: 0.9rem;
+}
+.xp-display {
+  font-weight: 700; color: var(--xp-color);
+  font-family: 'JetBrains Mono', monospace;
+  min-width: 80px;
+}
+.xp-track {
+  flex: 1; max-width: 400px; height: 10px;
+  background: #e8e8e0; border-radius: 10px; overflow: hidden;
+}
+.xp-fill {
+  height: 100%; width: 0%;
+  background: linear-gradient(90deg, var(--spring-green), var(--sun-yellow));
+  border-radius: 10px;
+  transition: width 0.6s cubic-bezier(0.34,1.56,0.64,1);
+}
+.badge-shelf { display:flex; gap:6px; }
+.badge-shelf .badge {
+  width:28px; height:28px; border-radius:50%;
+  display: flex; align-items:center; justify-content:center;
+  font-size:14px;
+  background: #e0e0d8; color:#aaa;
+  transition: all 0.4s;
+}
+.badge-shelf .badge.earned {
+  background: linear-gradient(135deg, var(--sun-yellow), #f5a623);
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(245,168,35,0.4);
+  animation: badgePop 0.5s cubic-bezier(0.34,1.56,0.64,1);
+}
+@keyframes badgePop {
+  0% { transform: scale(0.3); } 100% { transform: scale(1); }
+}
+
+.container {
+  position: relative; z-index:1;
+  max-width: 920px; margin: 0 auto;
+  padding: 30px 20px 60px;
+}
+
+.section {
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  margin-bottom: 32px;
+  overflow: hidden;
+  border: 1px solid rgba(74,158,63,0.08);
+  transition: box-shadow 0.3s;
+}
+.section:hover { box-shadow: var(--shadow-hover); }
+.section-header {
+  padding: 24px 28px 20px;
+  border-bottom: 2px solid var(--spring-pale);
+  display: flex; align-items: center; gap: 14px;
+  cursor: pointer; user-select: none;
+}
+.section-header .num {
+  width: 40px; height: 40px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--spring-green), var(--spring-light));
+  color: #fff; font-weight: 700; font-size: 1.1rem;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.section-header h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.35rem; font-weight: 700; color: var(--earth-brown);
+  flex: 1;
+}
+.section-header .toggle-icon {
+  font-size: 1.3rem; color: var(--spring-green);
+  transition: transform 0.3s;
+}
+.section.collapsed .section-header .toggle-icon { transform: rotate(-90deg); }
+.section.collapsed .section-body { display: none; }
+.section-body { padding: 24px 28px 28px; }
+
+.hook {
+  background: linear-gradient(135deg, var(--sun-warm), #fff3cd);
+  border-left: 4px solid var(--sun-yellow);
+  border-radius: 0 12px 12px 0;
+  padding: 18px 22px;
+  margin-bottom: 22px;
+  font-size: 1.05rem;
+  font-style: italic;
+  color: #6d5a00;
+}
+.hook::before { content:'🤔 '; font-style: normal; }
+
+p { margin-bottom: 14px; }
+strong { color: var(--earth-brown); }
+.keyword {
+  display: inline-block;
+  background: var(--spring-pale);
+  color: var(--spring-green);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.88em;
+  padding: 2px 8px;
+  border-radius: 6px;
+  font-weight: 600;
+}
+
+.analogy {
+  background: var(--spring-mint);
+  border-radius: 12px;
+  padding: 18px 22px;
+  margin: 18px 0;
+  border: 1px dashed var(--spring-light);
+}
+.analogy::before {
+  content: '🌿 Analogia';
+  display: block;
+  font-weight: 700; font-size: 0.85rem;
+  color: var(--spring-green);
+  margin-bottom: 6px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.param-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin: 16px 0;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  font-size: 0.92rem;
+}
+.param-table thead th {
+  background: var(--spring-green);
+  color: #fff;
+  padding: 12px 16px;
+  text-align: left;
+  font-weight: 600;
+}
+.param-table tbody td {
+  padding: 11px 16px;
+  border-bottom: 1px solid #eee;
+}
+.param-table tbody tr:nth-child(even) { background: #f8faf5; }
+.param-table tbody tr:hover { background: var(--spring-pale); }
+
+/* Terminal */
+.terminal {
+  background: #1a2e1a;
+  border-radius: 14px;
+  padding: 0;
+  margin: 20px 0;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.82rem;
+  line-height: 1.8;
+  overflow: hidden;
+  border: 1px solid #2a4a2a;
+}
+.terminal-bar {
+  background: #2a4a2a;
+  padding: 8px 16px;
+  display: flex; align-items: center; gap: 8px;
+  font-size: 0.72rem;
+  color: #6a9a6a;
+  letter-spacing: 1px;
+}
+.terminal-bar .dot { width:10px;height:10px;border-radius:50%; }
+.terminal-bar .dot.r { background:#ff5f56; }
+.terminal-bar .dot.y { background:#ffbd2e; }
+.terminal-bar .dot.g { background:#27c93f; }
+.terminal-bar .label { margin-left:auto; text-transform:uppercase; }
+.terminal-body {
+  padding: 16px 20px;
+  color: #8eff8e;
+  max-height: 400px;
+  overflow-y: auto;
+}
+.terminal-body .prompt { color: #8eff8e; }
+.terminal-body .output { color: #c0e8c0; }
+.terminal-body .highlight { color: var(--sun-yellow); font-weight:600; }
+.terminal-body .err { color: #ff8a80; }
+.terminal-body .dim { color: #5a8a5a; }
+.term-btn {
+  display:inline-block;
+  padding: 8px 20px; margin-top: 12px;
+  background: #3a5e3a;
+  color: #8eff8e;
+  border: 1px solid #5a8e5a;
+  border-radius: 8px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.82rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.term-btn:hover { background:#4a7e4a; }
+.term-btn:disabled { opacity:0.5; cursor:default; }
+
+/* Tool card */
+.tool-detail {
+  background: #fff;
+  border-radius: 14px;
+  padding: 22px 24px;
+  margin: 18px 0;
+  border: 1px solid #e8e8e0;
+  border-left: 5px solid var(--spring-green);
+}
+.tool-detail h4 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.05rem; color: var(--earth-brown);
+  margin-bottom: 8px;
+}
+.tool-detail .syntax {
+  display: inline-block;
+  background: #1a2e1a;
+  color: #8eff8e;
+  font-family: 'JetBrains Mono', monospace;
+  padding: 4px 12px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  margin: 6px 0;
+}
+.tool-detail .flags {
+  margin: 10px 0;
+  font-size: 0.88rem;
+}
+.tool-detail .flags dt {
+  font-family: 'JetBrains Mono', monospace;
+  color: var(--spring-green);
+  font-weight: 600;
+  margin-top: 6px;
+}
+.tool-detail .flags dd {
+  margin-left: 20px;
+  color: var(--text-light);
+}
+
+/* Quiz */
+.quiz-box {
+  background: #fff;
+  border-radius: 14px;
+  padding: 24px;
+  margin: 20px 0;
+  border: 2px solid var(--spring-pale);
+}
+.quiz-box h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.1rem; color: var(--earth-brown);
+  margin-bottom: 16px;
+}
+.quiz-box h3::before { content:'🌸 '; }
+.quiz-option {
+  display: block; width: 100%;
+  padding: 12px 18px;
+  margin-bottom: 8px;
+  background: var(--spring-mint);
+  border: 2px solid transparent;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  text-align: left;
+  font-family: inherit;
+  color: var(--text-main);
+  transition: all 0.2s;
+}
+.quiz-option:hover { border-color: var(--spring-light); background:#e0f2dc; }
+.quiz-option.correct { background:#c8e6c9; border-color:var(--download-color); color:#1b5e20; }
+.quiz-option.wrong { background:#ffcdd2; border-color:#c62828; color:#b71c1c; }
+.quiz-option:disabled { cursor:default; opacity:0.85; }
+.quiz-feedback {
+  margin-top: 12px;
+  padding: 12px 16px;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  display: none;
+}
+.quiz-feedback.show { display:block; }
+.quiz-feedback.ok { background:#e8f5e9; color:#2e7d32; }
+.quiz-feedback.no { background:#fce4ec; color:#c62828; }
+
+/* Challenge */
+.challenge {
+  background: linear-gradient(135deg, #fff9e6, #fff3cd);
+  border: 2px solid var(--sun-yellow);
+  border-radius: 14px;
+  padding: 24px;
+  margin: 20px 0;
+}
+.challenge h3 {
+  font-family:'Playfair Display',serif;
+  color: #6d5a00;
+  margin-bottom: 12px;
+}
+.challenge h3::before { content:'🏆 '; }
+.challenge-tier { display:flex; gap:8px; margin-bottom:12px; flex-wrap:wrap; }
+.tier-btn {
+  padding: 6px 16px;
+  border-radius: 20px;
+  border: 2px solid var(--sun-yellow);
+  background: #fff;
+  font-weight: 600;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.tier-btn:hover, .tier-btn.active { background: var(--sun-yellow); color:#fff; }
+
+/* Speed meter */
+.speed-meter {
+  display: flex; gap: 20px; flex-wrap: wrap;
+  justify-content: center;
+  margin: 20px 0;
+}
+.meter-card {
+  flex: 1; min-width: 140px; max-width: 200px;
+  background: #fff;
+  border-radius: 14px;
+  padding: 16px;
+  text-align: center;
+  box-shadow: 0 3px 12px rgba(0,0,0,0.06);
+  border-top: 4px solid;
+}
+.meter-card.dl { border-color: var(--download-color); }
+.meter-card.ul { border-color: var(--upload-color); }
+.meter-card.ping { border-color: var(--xp-color); }
+.meter-card.jit { border-color: var(--petal-pink); }
+.meter-card .label { font-size:0.72rem; font-weight:600; text-transform:uppercase; letter-spacing:1px; color:var(--text-light); margin-bottom:2px; }
+.meter-card .value {
+  font-family:'JetBrains Mono',monospace;
+  font-size: 1.5rem; font-weight: 700;
+}
+.meter-card.dl .value { color: var(--download-color); }
+.meter-card.ul .value { color: var(--upload-color); }
+.meter-card.ping .value { color: var(--xp-color); }
+.meter-card.jit .value { color: var(--petal-pink); }
+.meter-card .unit { font-size:0.78rem; color:var(--text-light); }
+
+/* Tools grid */
+.tools-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 14px;
+  margin: 16px 0;
+}
+.tool-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 18px;
+  border: 1px solid #e8e8e0;
+  transition: all 0.2s;
+}
+.tool-card:hover { border-color:var(--spring-light); transform:translateY(-2px); box-shadow:var(--shadow); }
+.tool-card .tool-icon { font-size:1.6rem; margin-bottom:8px; }
+.tool-card .tool-name { font-weight:700; font-size:0.95rem; color:var(--earth-brown); margin-bottom:4px; }
+.tool-card .tool-desc { font-size:0.82rem; color:var(--text-light); line-height:1.5; }
+.tool-card .tool-type {
+  display:inline-block; margin-top:8px;
+  font-size:0.72rem; font-weight:600;
+  padding:2px 8px; border-radius:10px;
+  background:var(--spring-pale); color:var(--spring-green);
+  text-transform:uppercase; letter-spacing:0.5px;
+}
+
+.check-btn {
+  display: inline-block;
+  padding: 10px 24px;
+  background: var(--spring-green);
+  color: #fff; border: none;
+  border-radius: 10px;
+  font-weight: 600; font-size: 0.95rem;
+  cursor: pointer; transition: all 0.2s;
+  margin-top: 8px;
+}
+.check-btn:hover { background:#3d8a35; transform:translateY(-1px); }
+
+.toast {
+  position:fixed; bottom:30px; left:50%; transform:translateX(-50%) translateY(80px);
+  background: var(--spring-green); color:#fff;
+  padding:12px 28px; border-radius:30px;
+  font-weight:600; font-size:0.95rem;
+  box-shadow: 0 6px 24px rgba(74,158,63,0.35);
+  z-index:200; opacity:0;
+  transition: all 0.4s cubic-bezier(0.34,1.56,0.64,1);
+  pointer-events:none;
+}
+.toast.show { opacity:1; transform:translateX(-50%) translateY(0); }
+
+.footer {
+  text-align:center; padding:40px 20px;
+  color:var(--text-light); font-size:0.85rem;
+}
+
+/* Info box */
+.info-box {
+  background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+  border-left: 4px solid var(--sky-blue);
+  border-radius: 0 12px 12px 0;
+  padding: 16px 20px;
+  margin: 16px 0;
+  font-size: 0.92rem;
+  color: #0d47a1;
+}
+.info-box::before { content:'💡 '; }
+
+/* Tabs */
+.tab-bar { display:flex; gap:4px; margin-bottom:0; flex-wrap:wrap; }
+.tab-btn {
+  padding:10px 20px;
+  background:#e8e8e0;
+  border:none;
+  border-radius:10px 10px 0 0;
+  font-family:inherit;
+  font-weight:600;
+  font-size:0.88rem;
+  cursor:pointer;
+  color:var(--text-light);
+  transition:all 0.2s;
+}
+.tab-btn.active { background:#1a2e1a; color:#8eff8e; }
+.tab-btn:hover:not(.active) { background:#d0d0c8; }
+.tab-content { display:none; }
+.tab-content.active { display:block; }
+
+@media (max-width:600px) {
+  .section-body { padding:18px 16px 22px; }
+  .terminal, .quiz-box, .challenge { padding:16px; }
+  .speed-meter { flex-direction:column; align-items:center; }
+  .meter-card { max-width:100%; }
+  .hero { padding:36px 16px 50px; }
+  .tool-detail { padding:16px; }
+}
+
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: var(--spring-pale); }
+::-webkit-scrollbar-thumb { background: var(--spring-light); border-radius: 4px; }
+</style>
+</head>
+<body>
+
+<div class="spring-bg" id="springBg"></div>
+<div class="toast" id="toast"></div>
+
+<header class="hero">
+  <div class="hero-icon">🌱</div>
+  <h1>Łącze internetowe</h1>
+  <p class="subtitle">Pobieranie, wysyłanie danych i monitorowanie parametrów — wiosenna diagnostyka sieci</p>
+</header>
+
+<div class="xp-bar-container">
+  <div class="xp-display" id="xpDisplay">0 XP</div>
+  <div class="xp-track"><div class="xp-fill" id="xpFill"></div></div>
+  <div class="badge-shelf">
+    <div class="badge" id="badge1" title="Kiełek — podstawy łącza">🌱</div>
+    <div class="badge" id="badge2" title="Kwiat — parametry">🌷</div>
+    <div class="badge" id="badge3" title="Pszczoła — narzędzia CMD">🐝</div>
+    <div class="badge" id="badge4" title="Motyl — narzędzia GUI i online">🦋</div>
+    <div class="badge" id="badge5" title="Drzewo — mistrz diagnostyki">🌳</div>
+  </div>
+</div>
+
+<main class="container">
+
+<!-- ==================== SEKCJA 1 ==================== -->
+<section class="section" id="sec1">
+  <div class="section-header" onclick="toggleSection('sec1')">
+    <div class="num">1</div>
+    <h2>Łącze — pobieranie i wysyłanie</h2>
+    <span class="toggle-icon">▼</span>
+  </div>
+  <div class="section-body">
+
+    <div class="hook">Gdy wiosną wysyłasz znajomym zdjęcie kwitnącej wiśni, Twoje dane pokonują tysiące kilometrów w ułamku sekundy. Ale skąd wiesz, czy Twoje łącze działa tak, jak powinno?</div>
+
+    <p><strong>Łącze internetowe</strong> to połączenie Twojego urządzenia z siecią Internet. Dane płyną w dwóch kierunkach:</p>
+
+    <div class="speed-meter">
+      <div class="meter-card dl">
+        <div class="label">↓ Download</div>
+        <div class="value">100</div>
+        <div class="unit">Mb/s</div>
+      </div>
+      <div class="meter-card ul">
+        <div class="label">↑ Upload</div>
+        <div class="value">20</div>
+        <div class="unit">Mb/s</div>
+      </div>
+    </div>
+
+    <p><strong>Pobieranie (download)</strong> — dane płyną do Ciebie (streaming, przeglądanie stron, ściąganie plików). <strong>Wysyłanie (upload)</strong> — dane płyną od Ciebie (wysyłanie zdjęć, wideokonferencje, upload na chmurę).</p>
+
+    <p>Typowe łącze domowe jest <strong>asymetryczne</strong> — download jest kilkukrotnie szybszy niż upload, bo większość użytkowników częściej pobiera niż wysyła.</p>
+
+    <div class="analogy">
+      Wyobraź sobie wiosenną rzekę. <strong>Download</strong> to nurt płynący w Twoją stronę — im szersze koryto, tym więcej wody (danych) dotrze na raz. <strong>Upload</strong> to Ty wrzucający butelki z wiadomościami pod prąd. Koryto „do Ciebie" jest zwykle szersze niż „od Ciebie".
+    </div>
+
+    <div class="info-box">
+      <strong>Przypomnienie o jednostkach:</strong> Prędkość łącza podajemy w <strong>Mb/s</strong> (megabitach, dziesiętnie: 1 Mb = 10⁶ bitów). Rozmiary plików w systemie to <strong>GiB / MiB</strong> (binarnie: 1 GiB = 2³⁰ bajtów). Przeliczając czas transferu pamiętaj o obu różnicach: bajty ↔ bity (×8) oraz binarne ↔ dziesiętne (1024 vs 1000).
+    </div>
+
+    <div class="quiz-box" id="quiz1">
+      <h3>Sprawdź się — rozgrzewka</h3>
+      <p>Operator oferuje łącze „300/50". Co to oznacza?</p>
+      <button class="quiz-option" onclick="checkQuiz('quiz1',this,false)">Łączna prędkość to 350 Mb/s</button>
+      <button class="quiz-option" onclick="checkQuiz('quiz1',this,true)">Download 300 Mb/s, Upload 50 Mb/s</button>
+      <button class="quiz-option" onclick="checkQuiz('quiz1',this,false)">Download 50 Mb/s, Upload 300 Mb/s</button>
+      <button class="quiz-option" onclick="checkQuiz('quiz1',this,false)">300 MB/s pobierania i 50 MB/s wysyłania</button>
+      <div class="quiz-feedback" id="quiz1-fb"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== SEKCJA 2 ==================== -->
+<section class="section" id="sec2">
+  <div class="section-header" onclick="toggleSection('sec2')">
+    <div class="num">2</div>
+    <h2>Kluczowe parametry łącza</h2>
+    <span class="toggle-icon">▼</span>
+  </div>
+  <div class="section-body">
+
+    <div class="hook">Prędkość to nie wszystko! Dlaczego czasem gra online laguje mimo szybkiego internetu? Bo liczy się też coś innego…</div>
+
+    <div class="speed-meter" style="margin-bottom:24px">
+      <div class="meter-card dl">
+        <div class="label">↓ Download</div>
+        <div class="value">95</div>
+        <div class="unit">Mb/s</div>
+      </div>
+      <div class="meter-card ul">
+        <div class="label">↑ Upload</div>
+        <div class="value">18</div>
+        <div class="unit">Mb/s</div>
+      </div>
+      <div class="meter-card ping">
+        <div class="label">Ping</div>
+        <div class="value">12</div>
+        <div class="unit">ms</div>
+      </div>
+      <div class="meter-card jit">
+        <div class="label">Jitter</div>
+        <div class="value">3</div>
+        <div class="unit">ms</div>
+      </div>
+    </div>
+
+    <table class="param-table">
+      <thead><tr><th>Parametr</th><th>Jednostka</th><th>Co oznacza</th><th>Dobra wartość</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Przepustowość</strong> (bandwidth)</td><td>Mb/s</td><td>Maksymalna ilość danych w jednostce czasu — „szerokość rury"</td><td>Bliska deklarowanej</td></tr>
+        <tr><td><strong>Ping / Latency</strong> (opóźnienie)</td><td>ms</td><td>Czas podróży pakietu „tam i z powrotem" (RTT)</td><td>&lt; 20 ms</td></tr>
+        <tr><td><strong>Jitter</strong></td><td>ms</td><td>Zmienność opóźnienia — jak bardzo ping „skacze"</td><td>&lt; 5 ms</td></tr>
+        <tr><td><strong>Packet loss</strong> (utrata pakietów)</td><td>%</td><td>Odsetek pakietów zgubionych w transmisji</td><td>0%</td></tr>
+        <tr><td><strong>TTL</strong> (Time To Live)</td><td>hops</td><td>Ile routerów pakiet może przeskoczyć zanim zostanie odrzucony</td><td>Zależy od OS</td></tr>
+      </tbody>
+    </table>
+
+    <div class="analogy">
+      <strong>Przepustowość</strong> to szerokość wiosennej rzeki — im szersza, tym więcej łódek (danych) przepłynie naraz. <strong>Ping</strong> to czas, w jakim jedna łódka dopłynie do brzegu i wróci. <strong>Jitter</strong> to nierówny prąd — jedna łódka płynie szybko, druga utknęła. <strong>Packet loss</strong> to łódki, które zatonęły po drodze.
+    </div>
+
+    <div class="quiz-box" id="quiz2">
+      <h3>Sprawdź się — parametry</h3>
+      <p>Gracz skarży się na „lagi" w grze online. Ma łącze 300 Mb/s. Co najprawdopodobniej jest problemem?</p>
+      <button class="quiz-option" onclick="checkQuiz('quiz2',this,false)">Za mała przepustowość — potrzebuje więcej Mb/s</button>
+      <button class="quiz-option" onclick="checkQuiz('quiz2',this,true)">Wysoki ping lub jitter — opóźnienie transmisji</button>
+      <button class="quiz-option" onclick="checkQuiz('quiz2',this,false)">Za niski upload — gry wymagają dużo wysyłania</button>
+      <button class="quiz-option" onclick="checkQuiz('quiz2',this,false)">Zły TTL — pakiety giną za szybko</button>
+      <div class="quiz-feedback" id="quiz2-fb"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== SEKCJA 3 — NARZĘDZIA CMD ==================== -->
+<section class="section" id="sec3">
+  <div class="section-header" onclick="toggleSection('sec3')">
+    <div class="num">3</div>
+    <h2>Narzędzia wiersza poleceń (CMD)</h2>
+    <span class="toggle-icon">▼</span>
+  </div>
+  <div class="section-body">
+
+    <div class="hook">Twój internet działa wolno? Zanim zadzwonisz do operatora, otwórz CMD i sam zbadaj, co się dzieje — jak wiosenny ogrodnik badający glebę przed sadzeniem!</div>
+
+    <p>System Windows ma wbudowane narzędzia sieciowe dostępne z <strong>Wiersza poleceń</strong> (<span class="keyword">cmd</span>) lub <strong>PowerShell</strong>. Otwierasz je przez: <span class="keyword">Win+R</span> → wpisz <span class="keyword">cmd</span> → Enter.</p>
+
+    <!-- === PING === -->
+    <div class="tool-detail">
+      <h4>🏓 ping — badanie opóźnienia</h4>
+      <p>Wysyła pakiety ICMP Echo Request do wskazanego hosta i mierzy czas odpowiedzi (RTT). To najprostsze i najczęściej używane narzędzie diagnostyczne.</p>
+      <div class="syntax">ping [opcje] adres_hosta</div>
+      <dl class="flags">
+        <dt>ping google.com</dt>
+        <dd>Wysyła 4 pakiety (domyślnie) do google.com</dd>
+        <dt>ping -t google.com</dt>
+        <dd>Pinguje w nieskończoność (przerywasz Ctrl+C) — dobre do monitorowania stabilności</dd>
+        <dt>ping -n 10 google.com</dt>
+        <dd>Wysyła dokładnie 10 pakietów</dd>
+        <dt>ping -l 1000 google.com</dt>
+        <dd>Zmienia rozmiar pakietu na 1000 bajtów (domyślnie 32)</dd>
+        <dt>ping -4 google.com</dt>
+        <dd>Wymusza użycie IPv4</dd>
+        <dt>ping 8.8.8.8</dt>
+        <dd>Pinguje serwer DNS Google po IP — pozwala wykluczyć problem z DNS</dd>
+      </dl>
+      <p style="margin-top:12px"><strong>Co czytamy z wyniku:</strong> czas w ms (im mniej, tym lepiej), TTL (ile routerów przeskoczył pakiet), % utraconych pakietów.</p>
+    </div>
+
+    <!-- Symulacja ping -->
+    <div class="terminal">
+      <div class="terminal-bar">
+        <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+        <span class="label">Symulacja — ping</span>
+      </div>
+      <div class="terminal-body" id="pingTerm" style="min-height:180px">
+        <div class="prompt">C:\Users\Uczeń&gt; <span style="color:#fff">ping google.com</span></div>
+        <div id="pingOutput"></div>
+        <button class="term-btn" id="pingBtn" onclick="runPingSim()">▶ Uruchom</button>
+      </div>
+    </div>
+
+    <!-- === TRACERT === -->
+    <div class="tool-detail">
+      <h4>🗺️ tracert — śledzenie trasy pakietów</h4>
+      <p>Pokazuje każdy router (hop), przez który przechodzi pakiet w drodze do celu. Pozwala zlokalizować, <strong>gdzie</strong> występuje opóźnienie lub utrata pakietów.</p>
+      <div class="syntax">tracert [opcje] adres_hosta</div>
+      <dl class="flags">
+        <dt>tracert google.com</dt>
+        <dd>Śledzi trasę do google.com, pokazując każdy hop z czasem odpowiedzi</dd>
+        <dt>tracert -d google.com</dt>
+        <dd>Nie rozwiązuje nazw DNS — szybsze działanie</dd>
+        <dt>tracert -h 15 google.com</dt>
+        <dd>Ogranicza liczbę hopów do 15 (domyślnie 30)</dd>
+      </dl>
+      <p style="margin-top:12px"><strong>Jak czytać:</strong> Każdy wiersz to jeden router. Trzy kolumny czasu — to trzy próby. Gwiazdka <span class="keyword">*</span> oznacza brak odpowiedzi (timeout). Szukaj miejsca, gdzie czas nagle rośnie — tam jest wąskie gardło.</p>
+    </div>
+
+    <!-- Symulacja tracert -->
+    <div class="terminal">
+      <div class="terminal-bar">
+        <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+        <span class="label">Symulacja — tracert</span>
+      </div>
+      <div class="terminal-body" id="tracertTerm" style="min-height:200px">
+        <div class="prompt">C:\Users\Uczeń&gt; <span style="color:#fff">tracert google.com</span></div>
+        <div id="tracertOutput"></div>
+        <button class="term-btn" id="tracertBtn" onclick="runTracertSim()">▶ Uruchom</button>
+      </div>
+    </div>
+
+    <!-- === PATHPING === -->
+    <div class="tool-detail">
+      <h4>🔬 pathping — ping + tracert w jednym</h4>
+      <p>Łączy możliwości <span class="keyword">ping</span> i <span class="keyword">tracert</span>. Najpierw wyznacza trasę, potem przez ~75 sekund wysyła pakiety do każdego routera i oblicza statystyki utraty pakietów na każdym hopie.</p>
+      <div class="syntax">pathping google.com</div>
+      <p style="margin-top:8px"><strong>Kiedy używać:</strong> Gdy podejrzewasz, że problem jest „gdzieś po drodze" — pathping pokaże <em>dokładnie</em> na którym routerze gubią się pakiety. Jest wolniejszy niż tracert, ale daje dużo więcej informacji.</p>
+    </div>
+
+    <!-- === IPCONFIG === -->
+    <div class="tool-detail">
+      <h4>📋 ipconfig — konfiguracja sieciowa</h4>
+      <p>Wyświetla konfigurację wszystkich interfejsów sieciowych. Kluczowe narzędzie do sprawdzenia, czy komputer poprawnie otrzymał adres IP.</p>
+      <div class="syntax">ipconfig [opcje]</div>
+      <dl class="flags">
+        <dt>ipconfig</dt>
+        <dd>Podstawowe info: adres IPv4, maska podsieci, brama domyślna</dd>
+        <dt>ipconfig /all</dt>
+        <dd>Pełne info: MAC, DHCP, DNS, czas dzierżawy adresu — <strong>najczęściej używana</strong></dd>
+        <dt>ipconfig /release</dt>
+        <dd>Zwalnia adres IP przydzielony przez DHCP</dd>
+        <dt>ipconfig /renew</dt>
+        <dd>Pobiera nowy adres IP od DHCP — <strong>pierwszy krok w naprawie problemów!</strong></dd>
+        <dt>ipconfig /flushdns</dt>
+        <dd>Czyści cache DNS — pomaga gdy strona „nie chce się otworzyć" mimo działającego netu</dd>
+      </dl>
+    </div>
+
+    <!-- Symulacja ipconfig -->
+    <div class="terminal">
+      <div class="terminal-bar">
+        <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+        <span class="label">Symulacja — ipconfig /all</span>
+      </div>
+      <div class="terminal-body" id="ipconfigTerm" style="min-height:180px">
+        <div class="prompt">C:\Users\Uczeń&gt; <span style="color:#fff">ipconfig /all</span></div>
+        <div id="ipconfigOutput"></div>
+        <button class="term-btn" id="ipconfigBtn" onclick="runIpconfigSim()">▶ Uruchom</button>
+      </div>
+    </div>
+
+    <!-- === NETSTAT === -->
+    <div class="tool-detail">
+      <h4>📊 netstat — aktywne połączenia i statystyki</h4>
+      <p>Pokazuje aktywne połączenia sieciowe, otwarte porty i statystyki transmisji. Przydatne do wykrywania podejrzanych połączeń.</p>
+      <div class="syntax">netstat [opcje]</div>
+      <dl class="flags">
+        <dt>netstat -a</dt>
+        <dd>Wszystkie połączenia i nasłuchujące porty</dd>
+        <dt>netstat -n</dt>
+        <dd>Adresy numeryczne (bez rozwiązywania DNS) — szybsze</dd>
+        <dt>netstat -e</dt>
+        <dd>Statystyki interfejsu — ile bajtów wysłano/odebrano, ile błędów</dd>
+        <dt>netstat -b</dt>
+        <dd>Pokazuje, który program utrzymuje dane połączenie (wymaga uprawnień administratora)</dd>
+        <dt>netstat -an</dt>
+        <dd>Najczęstsza kombinacja — szybki przegląd wszystkich połączeń</dd>
+      </dl>
+    </div>
+
+    <!-- === NSLOOKUP === -->
+    <div class="tool-detail">
+      <h4>🔍 nslookup — diagnostyka DNS</h4>
+      <p>Odpytuje serwer DNS o adres IP przypisany do nazwy domenowej. Pomaga wykryć problemy z rozwiązywaniem nazw.</p>
+      <div class="syntax">nslookup nazwa_domeny [serwer_dns]</div>
+      <dl class="flags">
+        <dt>nslookup google.com</dt>
+        <dd>Sprawdza adres IP dla google.com (używa domyślnego DNS)</dd>
+        <dt>nslookup google.com 8.8.8.8</dt>
+        <dd>Odpytuje serwer DNS Google zamiast domyślnego — porównanie pozwala sprawdzić, czy problem jest w DNS operatora</dd>
+        <dt>nslookup -type=MX google.com</dt>
+        <dd>Sprawdza rekordy poczty (MX) dla domeny</dd>
+      </dl>
+    </div>
+
+    <!-- Symulacja nslookup -->
+    <div class="terminal">
+      <div class="terminal-bar">
+        <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+        <span class="label">Symulacja — nslookup</span>
+      </div>
+      <div class="terminal-body" id="nslookupTerm" style="min-height:120px">
+        <div class="prompt">C:\Users\Uczeń&gt; <span style="color:#fff">nslookup google.com</span></div>
+        <div id="nslookupOutput"></div>
+        <button class="term-btn" id="nslookupBtn" onclick="runNslookupSim()">▶ Uruchom</button>
+      </div>
+    </div>
+
+    <!-- === ODPOWIEDNIKI LINUX === -->
+    <div class="info-box" style="margin-top:20px">
+      <strong>Odpowiedniki w Linuxie:</strong>
+      <span class="keyword">ping</span> (tak samo),
+      <span class="keyword">traceroute</span> (zamiast tracert),
+      <span class="keyword">mtr</span> (odpowiednik pathping, ale lepszy!),
+      <span class="keyword">ip a</span> / <span class="keyword">ifconfig</span> (zamiast ipconfig),
+      <span class="keyword">ss -tuln</span> (zamiast netstat),
+      <span class="keyword">dig</span> (zamiast nslookup, bardziej szczegółowy).
+    </div>
+
+    <div class="quiz-box" id="quiz3">
+      <h3>Sprawdź się — narzędzia CMD</h3>
+      <p>Internet działa, ale jedna konkretna strona się nie otwiera. Które polecenie pomoże sprawdzić, czy problem dotyczy DNS?</p>
+      <button class="quiz-option" onclick="checkQuiz('quiz3',this,false)">ping -t google.com</button>
+      <button class="quiz-option" onclick="checkQuiz('quiz3',this,false)">tracert google.com</button>
+      <button class="quiz-option" onclick="checkQuiz('quiz3',this,true)">nslookup nazwastrony.pl 8.8.8.8</button>
+      <button class="quiz-option" onclick="checkQuiz('quiz3',this,false)">netstat -an</button>
+      <div class="quiz-feedback" id="quiz3-fb"></div>
+    </div>
+
+    <div class="quiz-box" id="quiz4">
+      <h3>Sprawdź się — kolejność diagnostyki</h3>
+      <p>Komputer nie ma internetu. Jaka jest najlepsza kolejność diagnostyki?</p>
+      <button class="quiz-option" onclick="checkQuiz('quiz4',this,true)">ipconfig → ping 127.0.0.1 → ping brama → ping 8.8.8.8 → nslookup</button>
+      <button class="quiz-option" onclick="checkQuiz('quiz4',this,false)">tracert → netstat → ping → ipconfig</button>
+      <button class="quiz-option" onclick="checkQuiz('quiz4',this,false)">nslookup → ping → ipconfig → netstat</button>
+      <button class="quiz-option" onclick="checkQuiz('quiz4',this,false)">netstat -an → tracert → pathping → ipconfig /all</button>
+      <div class="quiz-feedback" id="quiz4-fb"></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ==================== SEKCJA 4 — NARZĘDZIA GUI i ONLINE ==================== -->
+<section class="section" id="sec4">
+  <div class="section-header" onclick="toggleSection('sec4')">
+    <div class="num">4</div>
+    <h2>Narzędzia graficzne i online</h2>
+    <span class="toggle-icon">▼</span>
+  </div>
+  <div class="section-body">
+
+    <div class="hook">CMD to potężne narzędzie, ale nie jedyne! Windows ma też wbudowane narzędzia graficzne, a w sieci znajdziesz testy, których wyniki mogą posłużyć nawet jako dowód w reklamacji u operatora.</div>
+
+    <h3 style="font-family:'Playfair Display',serif;margin:0 0 16px;color:var(--earth-brown)">Wbudowane narzędzia Windows</h3>
+
+    <div class="tool-detail">
+      <h4>📈 Menedżer zadań — zakładka Wydajność → Sieć</h4>
+      <p>Otwórz <span class="keyword">Ctrl+Shift+Esc</span> → <strong>Wydajność</strong> → wybierz adapter sieciowy (Wi-Fi lub Ethernet).</p>
+      <p><strong>Co zobaczysz:</strong> wykres wykorzystania sieci w czasie rzeczywistym (osobno wysyłanie i odbieranie), aktualną prędkość transferu, nazwę adaptera i typ połączenia. Przydatne do szybkiego sprawdzenia, czy coś „zjada" przepustowość w tle.</p>
+    </div>
+
+    <div class="tool-detail">
+      <h4>🔧 Monitor zasobów (resmon)</h4>
+      <p>Otwórz <span class="keyword">Win+R</span> → <span class="keyword">resmon</span> → zakładka <strong>Sieć</strong>.</p>
+      <p><strong>Co zobaczysz:</strong> Szczegółowy podział — który <em>proces</em> (program) ile danych wysyła/odbiera, do jakich adresów IP się łączy, na jakich portach nasłuchuje. Dużo bardziej szczegółowy niż Menedżer zadań.</p>
+      <p><strong>Kiedy używać:</strong> Gdy podejrzewasz, że jakiś program w tle „kradnie" przepustowość (np. aktualizacja Windows, synchronizacja chmury, malware).</p>
+    </div>
+
+    <div class="tool-detail">
+      <h4>⚙️ Centrum sieci i udostępniania</h4>
+      <p><span class="keyword">ncpa.cpl</span> — szybki dostęp do listy kart sieciowych. Kliknij prawym → <strong>Stan</strong> → widzisz prędkość negocjowaną karty sieciowej (np. 1 Gbps dla Ethernet, 866 Mbps dla Wi-Fi 5).</p>
+      <p><strong>Uwaga:</strong> To prędkość <em>fizycznego połączenia</em> z routerem, nie z internetem! Jeśli karta negocjuje 100 Mbps zamiast 1 Gbps — problem może być w kablu lub porcie.</p>
+    </div>
+
+    <h3 style="font-family:'Playfair Display',serif;margin:24px 0 16px;color:var(--earth-brown)">Narzędzia online — testy prędkości</h3>
+
+    <div class="tools-grid">
+      <div class="tool-card">
+        <div class="tool-icon">🚀</div>
+        <div class="tool-name">Speedtest.net (Ookla)</div>
+        <div class="tool-desc">Najpopularniejszy test. Mierzy download, upload, ping, jitter. Wybór serwera testowego.</div>
+        <div class="tool-type">Strona / Aplikacja</div>
+      </div>
+      <div class="tool-card">
+        <div class="tool-icon">📡</div>
+        <div class="tool-name">Fast.com (Netflix)</div>
+        <div class="tool-desc">Prosty test pobierania z serwerów Netflixa. Kliknij „więcej" aby zobaczyć upload i latency.</div>
+        <div class="tool-type">Strona</div>
+      </div>
+      <div class="tool-card">
+        <div class="tool-icon">🏛️</div>
+        <div class="tool-name">PRO Speed Test (UKE)</div>
+        <div class="tool-desc">Oficjalny test polskiego regulatora. Certyfikowany wynik jako <strong>dowód w reklamacji</strong> u operatora!</div>
+        <div class="tool-type">Strona / Certyfikat</div>
+      </div>
+      <div class="tool-card">
+        <div class="tool-icon">🌐</div>
+        <div class="tool-name">Google „speed test"</div>
+        <div class="tool-desc">Wpisz „speed test" w Google — szybki test bez wchodzenia na dodatkową stronę.</div>
+        <div class="tool-type">Wbudowany w Google</div>
+      </div>
+    </div>
+
+    <div class="info-box">
+      <strong>Jak prawidłowo testować prędkość?</strong>
+      1) Podłącz komputer <strong>kablem Ethernet</strong> (Wi-Fi zaniża wyniki).
+      2) Zamknij inne programy i karty przeglądarki.
+      3) Wykonaj test <strong>3× w różnych porach</strong> dnia i uśrednij wyniki.
+      4) Porównaj z prędkością deklarowaną w umowie — zgodnie z regulacjami UKE powinna być nie mniej niż ~60–70% deklarowanej (minimalna gwarantowana).
+    </div>
+
+    <div class="quiz-box" id="quiz5">
+      <h3>Sprawdź się — narzędzia graficzne</h3>
+      <p>Podejrzewasz, że jakiś program w tle zużywa cały internet. Które narzędzie Windows najlepiej pokaże, <em>który proces</em> ile danych przesyła?</p>
+      <button class="quiz-option" onclick="checkQuiz('quiz5',this,false)">Menedżer zadań → Wydajność → Sieć</button>
+      <button class="quiz-option" onclick="checkQuiz('quiz5',this,true)">Monitor zasobów (resmon) → zakładka Sieć</button>
+      <button class="quiz-option" onclick="checkQuiz('quiz5',this,false)">Speedtest.net</button>
+      <button class="quiz-option" onclick="checkQuiz('quiz5',this,false)">Centrum sieci → Stan karty</button>
+      <div class="quiz-feedback" id="quiz5-fb"></div>
+    </div>
+
+    <div class="quiz-box" id="quiz6">
+      <h3>Sprawdź się — test prędkości</h3>
+      <p>Chcesz złożyć reklamację u operatora, bo internet jest wolniejszy niż w umowie. Który test prędkości da Ci wynik z certyfikatem honorowanym przez UKE?</p>
+      <button class="quiz-option" onclick="checkQuiz('quiz6',this,false)">Speedtest.net (Ookla)</button>
+      <button class="quiz-option" onclick="checkQuiz('quiz6',this,false)">Fast.com (Netflix)</button>
+      <button class="quiz-option" onclick="checkQuiz('quiz6',this,true)">PRO Speed Test (UKE)</button>
+      <button class="quiz-option" onclick="checkQuiz('quiz6',this,false)">Google „speed test"</button>
+      <div class="quiz-feedback" id="quiz6-fb"></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ==================== SEKCJA 5 — SCENARIUSZE DIAGNOSTYCZNE ==================== -->
+<section class="section" id="sec5">
+  <div class="section-header" onclick="toggleSection('sec5')">
+    <div class="num">5</div>
+    <h2>Wyzwania — scenariusze diagnostyczne</h2>
+    <span class="toggle-icon">▼</span>
+  </div>
+  <div class="section-body">
+
+    <div class="hook">Czas wcielić się w rolę administratora sieci! Przeczytaj wynik polecenia i postawić diagnozę — jak lekarz czytający wyniki badań na wiosnę.</div>
+
+    <!-- Wyzwanie 1: Analiza ping -->
+    <div class="challenge" id="ch1">
+      <h3>Wyzwanie 1 — Odczytaj wynik ping</h3>
+      <div class="challenge-tier">
+        <button class="tier-btn active" onclick="setTier('ch1',1,this)">🌱 Łatwy</button>
+        <button class="tier-btn" onclick="setTier('ch1',2,this)">🌷 Średni</button>
+        <button class="tier-btn" onclick="setTier('ch1',3,this)">🌳 Trudny</button>
+      </div>
+      <div class="challenge-content" id="ch1-content"></div>
+    </div>
+
+    <!-- Wyzwanie 2: Analiza tracert -->
+    <div class="challenge" id="ch2">
+      <h3>Wyzwanie 2 — Odczytaj wynik tracert</h3>
+      <div class="challenge-tier">
+        <button class="tier-btn active" onclick="setTier('ch2',1,this)">🌱 Łatwy</button>
+        <button class="tier-btn" onclick="setTier('ch2',2,this)">🌷 Średni</button>
+        <button class="tier-btn" onclick="setTier('ch2',3,this)">🌳 Trudny</button>
+      </div>
+      <div class="challenge-content" id="ch2-content"></div>
+    </div>
+
+    <!-- Wyzwanie 3: Scenariusz diagnostyczny -->
+    <div class="challenge" id="ch3">
+      <h3>Wyzwanie 3 — Dobierz narzędzie do problemu</h3>
+      <div class="challenge-tier">
+        <button class="tier-btn active" onclick="setTier('ch3',1,this)">🌱 Łatwy</button>
+        <button class="tier-btn" onclick="setTier('ch3',2,this)">🌷 Średni</button>
+        <button class="tier-btn" onclick="setTier('ch3',3,this)">🌳 Trudny</button>
+      </div>
+      <div class="challenge-content" id="ch3-content"></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ==================== PODSUMOWANIE ==================== -->
+<section class="section" id="sec6">
+  <div class="section-header" onclick="toggleSection('sec6')">
+    <div class="num">✦</div>
+    <h2>Podsumowanie — mapa wiedzy</h2>
+    <span class="toggle-icon">▼</span>
+  </div>
+  <div class="section-body">
+    <div style="background:var(--spring-mint);border-radius:14px;padding:24px;text-align:center">
+      <p style="font-size:1.05rem;margin-bottom:20px">Dziś poznałeś/aś narzędzia diagnostyki sieciowej — Twój wiosenny zestaw ogrodnika sieci:</p>
+
+      <div style="display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:20px">
+        <span style="background:var(--download-color);color:#fff;padding:8px 16px;border-radius:20px;font-weight:600;font-size:0.85rem">ping</span>
+        <span style="background:var(--upload-color);color:#fff;padding:8px 16px;border-radius:20px;font-weight:600;font-size:0.85rem">tracert</span>
+        <span style="background:var(--xp-color);color:#fff;padding:8px 16px;border-radius:20px;font-weight:600;font-size:0.85rem">pathping</span>
+        <span style="background:var(--petal-pink);color:#fff;padding:8px 16px;border-radius:20px;font-weight:600;font-size:0.85rem">ipconfig</span>
+        <span style="background:var(--earth-brown);color:#fff;padding:8px 16px;border-radius:20px;font-weight:600;font-size:0.85rem">netstat</span>
+        <span style="background:var(--spring-green);color:#fff;padding:8px 16px;border-radius:20px;font-weight:600;font-size:0.85rem">nslookup</span>
+        <span style="background:var(--sky-blue);color:#fff;padding:8px 16px;border-radius:20px;font-weight:600;font-size:0.85rem">resmon</span>
+        <span style="background:#7b1fa2;color:#fff;padding:8px 16px;border-radius:20px;font-weight:600;font-size:0.85rem">PRO Speed Test</span>
+      </div>
+
+      <p style="font-size:0.92rem;color:var(--text-light);margin-bottom:16px">Schemat diagnostyki:<br>
+      <strong>ipconfig</strong> (czy mam IP?) → <strong>ping 127.0.0.1</strong> (czy stos TCP/IP działa?) → <strong>ping brama</strong> (czy router odpowiada?) → <strong>ping 8.8.8.8</strong> (czy internet działa?) → <strong>nslookup</strong> (czy DNS działa?) → <strong>tracert</strong> (gdzie jest problem?)</p>
+
+      <div style="margin-top:16px;padding-top:16px;border-top:2px dashed var(--spring-light)">
+        <p style="font-weight:700;color:var(--earth-brown);margin-bottom:8px">Twoje osiągnięcia:</p>
+        <p>Zdobyte XP: <strong id="finalXP">0</strong> / <span id="finalMaxXP">160</span></p>
+        <p>Odznaki: <span id="finalBadges">0</span> / 5</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <p>🌱 Materiały edukacyjne — Łącze internetowe: monitorowanie parametrów — Wiosna 2026</p>
+  <p style="font-size:0.78rem;margin-top:4px">Neurodydaktyka • Gamifikacja • Offline-compatible</p>
+</footer>
+
+<script>
+// ============ STATE ============
+let xp = 0;
+const maxXP = 160; // 6 quizzes × 15 = 90 + 3 challenges × ~20 = ~70 → 160
+const badges = [false,false,false,false,false];
+const quizDone = {};
+const challengeDone = {};
+
+// ============ XP & BADGES ============
+function addXP(amount) {
+  xp = Math.min(xp + amount, maxXP);
+  document.getElementById('xpDisplay').textContent = xp + ' XP';
+  document.getElementById('xpFill').style.width = (xp/maxXP*100)+'%';
+  document.getElementById('finalXP').textContent = xp;
+  showToast('+'+amount+' XP 🌱');
+  checkBadges();
+}
+function earnBadge(idx) {
+  if(badges[idx]) return;
+  badges[idx] = true;
+  document.getElementById('badge'+(idx+1)).classList.add('earned');
+  document.getElementById('finalBadges').textContent = badges.filter(b=>b).length;
+}
+function checkBadges() {
+  if(quizDone['quiz1'] && quizDone['quiz2']) earnBadge(0);
+  if(quizDone['quiz3'] || quizDone['quiz4']) earnBadge(2);
+  if(quizDone['quiz5'] || quizDone['quiz6']) earnBadge(3);
+  if(challengeDone['ch1'] || challengeDone['ch2']) earnBadge(1);
+  if(xp >= 120) earnBadge(4);
+}
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'), 2000);
+}
+
+// ============ SECTIONS ============
+function toggleSection(id) {
+  document.getElementById(id).classList.toggle('collapsed');
+}
+
+// ============ QUIZZES ============
+function checkQuiz(quizId, btn, isCorrect) {
+  if(quizDone[quizId]) return;
+  const box = document.getElementById(quizId);
+  const btns = box.querySelectorAll('.quiz-option');
+  const fb = document.getElementById(quizId+'-fb');
+  btns.forEach(b => {
+    b.disabled = true;
+    if(b === btn) b.classList.add(isCorrect ? 'correct' : 'wrong');
+    if(b.getAttribute('onclick')?.includes('true') && !isCorrect) b.classList.add('correct');
+  });
+  fb.classList.add('show', isCorrect ? 'ok' : 'no');
+
+  const explanations = {
+    quiz1: ['✅ Tak! Zapis 300/50 oznacza download/upload w Mb/s.', '❌ Zapis 300/50 to download 300 Mb/s / upload 50 Mb/s — pierwsza liczba to zawsze pobieranie.'],
+    quiz2: ['✅ Dokładnie! 300 Mb/s to więcej niż wystarczająco dla gry. Problem to opóźnienie (ping/jitter), nie przepustowość.', '❌ Gry online zużywają mało danych (1–3 Mb/s), ale wymagają niskiego pingu i stabilnego jittera.'],
+    quiz3: ['✅ Świetnie! nslookup z alternatywnym DNS (8.8.8.8) pozwala sprawdzić, czy DNS operatora poprawnie rozwiązuje nazwę.', '❌ nslookup z 8.8.8.8 porówna odpowiedź DNS Google z DNS operatora — jeśli się różnią, problem jest w DNS.'],
+    quiz4: ['✅ Dokładnie! Od najbliższego (loopback) do najdalszego — to metoda „od środka na zewnątrz". Pozwala zlokalizować, na którym etapie się psuje.', '❌ Prawidłowa kolejność to od najbliższego: ipconfig (mam IP?) → ping loopback (127.0.0.1) → ping brama → ping internet (8.8.8.8) → nslookup (DNS).'],
+    quiz5: ['✅ Monitor zasobów (resmon) pokazuje szczegółowy podział ruchu sieciowego per proces — dokładnie to, czego potrzebujemy.', '❌ Menedżer zadań pokazuje ogólny wykres, ale resmon daje podział na poszczególne procesy z adresami docelowymi.'],
+    quiz6: ['✅ Tak! PRO Speed Test (dawna nazwa: PRO Speed Test Certified by UKE) generuje certyfikowany raport honorowany przy reklamacjach.', '❌ Tylko PRO Speed Test (UKE/UKE-certified) daje oficjalny certyfikat uznawany przez operatorów i regulatora.'],
+  };
+  const exp = explanations[quizId];
+  fb.textContent = isCorrect ? exp[0] : exp[1];
+  if(isCorrect && !quizDone[quizId]) addXP(15);
+  quizDone[quizId] = true;
+}
+
+// ============ TERMINAL SIMULATIONS ============
+function typeLines(outputId, btnId, lines, delay) {
+  const output = document.getElementById(outputId);
+  const btn = document.getElementById(btnId);
+  btn.disabled = true;
+  output.innerHTML = '';
+  let i = 0;
+  function next() {
+    if(i < lines.length) {
+      output.innerHTML += lines[i] + '<br>';
+      i++;
+      setTimeout(next, delay + Math.random()*200);
+    } else {
+      btn.disabled = false;
+    }
+  }
+  next();
+}
+
+function runPingSim() {
+  const pings = [];
+  const lines = ['<br><span class="output">Badanie google.com [142.250.185.206] z 32 bajtami danych:</span>',''];
+  for(let i=0;i<4;i++){
+    const ms = Math.floor(Math.random()*12)+5;
+    pings.push(ms);
+    lines.push(`<span class="output">Odpowiedź z 142.250.185.206: bajty=32 czas=<span class="highlight">${ms}ms</span> TTL=117</span>`);
+  }
+  const avg = Math.round(pings.reduce((a,b)=>a+b,0)/4);
+  lines.push('');
+  lines.push('<span class="output">Statystyka badania ping dla 142.250.185.206:</span>');
+  lines.push(`<span class="output">    Pakiety: Wysłane = 4, Odebrane = 4, Utracone = <span class="highlight">0 (0% strat)</span></span>`);
+  lines.push(`<span class="output">Przybliżony czas badania pakietów w ms:</span>`);
+  lines.push(`<span class="output">    Minimum = <span class="highlight">${Math.min(...pings)}ms</span>, Maksimum = <span class="highlight">${Math.max(...pings)}ms</span>, Średnia = <span class="highlight">${avg}ms</span></span>`);
+  typeLines('pingOutput','pingBtn',lines,350);
+}
+
+function runTracertSim() {
+  const hops = [
+    {n:1, ip:'192.168.1.1', name:'router.local', t:[1,1,1]},
+    {n:2, ip:'10.0.0.1', name:'', t:[3,4,3]},
+    {n:3, ip:'83.238.204.1', name:'war-core-1.operator.pl', t:[8,7,9]},
+    {n:4, ip:'62.115.48.2', name:'telia-gw.operator.pl', t:[12,11,13]},
+    {n:5, ip:'213.248.73.65', name:'ffm-bb1-link.ip.twelve99.net', t:[22,24,21]},
+    {n:6, ip:'*', name:'', t:['*','*','*']},
+    {n:7, ip:'142.250.164.14', name:'fra24s04-in-f14.1e100.net', t:[23,22,24]},
+  ];
+  const lines = [
+    `<br><span class="output">Śledzenie trasy do google.com [142.250.164.14]</span>`,
+    `<span class="output">po maksymalnie 30 przeskokach:</span>`,
+    ''
+  ];
+  for(const h of hops){
+    const t1 = h.t[0]==='*' ? '   *' : `${String(h.t[0]).padStart(4)} ms`;
+    const t2 = h.t[1]==='*' ? '   *' : `${String(h.t[1]).padStart(4)} ms`;
+    const t3 = h.t[2]==='*' ? '   *' : `${String(h.t[2]).padStart(4)} ms`;
+    const addr = h.ip==='*' ? '<span class="dim">Upłynął limit czasu żądania.</span>' : `<span class="output">${h.name ? h.name+' ' : ''}[${h.ip}]</span>`;
+    const hop = h.ip==='*' ?
+      `<span class="output">${String(h.n).padStart(2)}  ${t1}  ${t2}  ${t3}  </span>${addr}` :
+      `<span class="output">${String(h.n).padStart(2)}  ${t1}  ${t2}  ${t3}  </span>${addr}`;
+    lines.push(hop);
+  }
+  lines.push('');
+  lines.push('<span class="output">Śledzenie zakończone.</span>');
+  typeLines('tracertOutput','tracertBtn',lines,500);
+}
+
+function runIpconfigSim() {
+  const lines = [
+    '<br><span class="output">Konfiguracja IP systemu Windows</span>','',
+    '<span class="output">   Nazwa hosta . . . . . . . . . : <span class="highlight">KOMPUTER-UCZEN</span></span>',
+    '<span class="output">   Sufiks podstawowy DNS  . . . . : szkolna.local</span>',
+    '',
+    '<span class="output">Karta Ethernet Ethernet:</span>','',
+    '<span class="output">   Opis . . . . . . . . . . . . : Realtek PCIe GbE</span>',
+    '<span class="output">   Adres fizyczny (MAC) . . . . : <span class="highlight">00-1A-2B-3C-4D-5E</span></span>',
+    '<span class="output">   DHCP włączony  . . . . . . . : Tak</span>',
+    '<span class="output">   Adres IPv4 . . . . . . . . . : <span class="highlight">192.168.1.105</span></span>',
+    '<span class="output">   Maska podsieci . . . . . . . : <span class="highlight">255.255.255.0</span></span>',
+    '<span class="output">   Brama domyślna  . . . . . . : <span class="highlight">192.168.1.1</span></span>',
+    '<span class="output">   Serwer DHCP  . . . . . . . . : 192.168.1.1</span>',
+    '<span class="output">   Serwery DNS . . . . . . . . . : <span class="highlight">192.168.1.1</span></span>',
+    '<span class="output">                                   8.8.8.8</span>',
+    '<span class="output">   Dzierżawa uzyskana  . . . . : 6 marca 2026 08:14:32</span>',
+    '<span class="output">   Dzierżawa wygasa . . . . . . : 7 marca 2026 08:14:32</span>',
+  ];
+  typeLines('ipconfigOutput','ipconfigBtn',lines,120);
+}
+
+function runNslookupSim() {
+  const lines = [
+    '<br><span class="output">Serwer:  dns.szkolna.local</span>',
+    '<span class="output">Address:  192.168.1.1</span>',
+    '',
+    '<span class="output">Nieautorytatywna odpowiedź:</span>',
+    '<span class="output">Nazwa:    <span class="highlight">google.com</span></span>',
+    '<span class="output">Addresses:  2a00:1450:401b:810::200e</span>',
+    '<span class="output">          <span class="highlight">142.250.185.206</span></span>',
+  ];
+  typeLines('nslookupOutput','nslookupBtn',lines,300);
+}
+
+// ============ CHALLENGES ============
+let currentTier = {ch1:1, ch2:1, ch3:1};
+
+const challengeData = {
+  ch1: {
+    1: {
+      terminal: `<span class="output">Badanie google.com [142.250.185.206] z 32 bajtami danych:</span><br>
+<span class="output">Odpowiedź z 142.250.185.206: bajty=32 czas=<span class="highlight">8ms</span> TTL=117</span><br>
+<span class="output">Odpowiedź z 142.250.185.206: bajty=32 czas=<span class="highlight">9ms</span> TTL=117</span><br>
+<span class="output">Odpowiedź z 142.250.185.206: bajty=32 czas=<span class="highlight">7ms</span> TTL=117</span><br>
+<span class="output">Odpowiedź z 142.250.185.206: bajty=32 czas=<span class="highlight">8ms</span> TTL=117</span><br><br>
+<span class="output">Pakiety: Wysłane = 4, Odebrane = 4, Utracone = 0 (0% strat)</span><br>
+<span class="output">Minimum = 7ms, Maksimum = 9ms, Średnia = 8ms</span>`,
+      q: 'Jak oceniasz to połączenie?',
+      opts: [
+        {t:'Doskonałe — ping ~8 ms, 0% strat, stabilne', correct:true},
+        {t:'Złe — za niski TTL', correct:false},
+        {t:'Przeciętne — ping powinien być 0 ms', correct:false},
+      ],
+      fb_ok: '✅ Brawo! Ping 7–9 ms to świetny wynik, brak strat i minimalna zmienność (jitter ~2 ms).',
+      fb_no: '❌ Ping 7–9 ms to bardzo dobry wynik. 0 ms jest fizycznie niemożliwe, a TTL=117 jest normalny.',
+      xp: 15
+    },
+    2: {
+      terminal: `<span class="output">Badanie serwer-gry.pl [185.22.33.44] z 32 bajtami danych:</span><br>
+<span class="output">Odpowiedź z 185.22.33.44: bajty=32 czas=<span class="highlight">12ms</span> TTL=56</span><br>
+<span class="output">Odpowiedź z 185.22.33.44: bajty=32 czas=<span class="highlight">89ms</span> TTL=56</span><br>
+<span class="output">Odpowiedź z 185.22.33.44: bajty=32 czas=<span class="highlight">14ms</span> TTL=56</span><br>
+<span class="output">Upłynął limit czasu żądania.</span><br><br>
+<span class="output">Pakiety: Wysłane = 4, Odebrane = 3, Utracone = <span class="err">1 (25% strat)</span></span><br>
+<span class="output">Minimum = 12ms, Maksimum = 89ms, Średnia = 38ms</span>`,
+      q: 'Co jest problemem w tym wyniku?',
+      opts: [
+        {t:'Tylko wysoki ping (średnia 38 ms)', correct:false},
+        {t:'Wysoki jitter (12→89 ms) ORAZ 25% utraty pakietów — niestabilne łącze', correct:true},
+        {t:'TTL=56 jest za niski', correct:false},
+      ],
+      fb_ok: '✅ Świetna analiza! Skoki 12→89 ms to ogromny jitter, a utrata 25% pakietów oznacza poważny problem ze stabilnością. Przy graniu online to gwarantowane lagi.',
+      fb_no: '❌ Kluczowe problemy to jitter (różnica 12 vs 89 ms) i 25% packet loss. TTL=56 jest normalny (zwykle startuje od 64 w Linuxie).',
+      xp: 20
+    },
+    3: {
+      terminal: `<span class="output">Badanie 192.168.1.1 z 32 bajtami danych:</span><br>
+<span class="output">Odpowiedź z 192.168.1.1: bajty=32 czas=<span class="highlight">1ms</span> TTL=64</span><br>
+<span class="output">Odpowiedź z 192.168.1.1: bajty=32 czas=<span class="highlight">2ms</span> TTL=64</span><br><br>
+<span class="output">Badanie 8.8.8.8 z 32 bajtami danych:</span><br>
+<span class="output">Upłynął limit czasu żądania.</span><br>
+<span class="output">Upłynął limit czasu żądania.</span><br>
+<span class="output">Upłynął limit czasu żądania.</span><br>
+<span class="output">Upłynął limit czasu żądania.</span><br><br>
+<span class="output">Pakiety: Wysłane = 4, Odebrane = 0, Utracone = <span class="err">4 (100% strat)</span></span>`,
+      q: 'Brama (router) odpowiada, ale 8.8.8.8 nie. Co to oznacza?',
+      opts: [
+        {t:'Karta sieciowa jest uszkodzona', correct:false},
+        {t:'Problem jest za routerem — łącze do operatora nie działa (np. awaria WAN)', correct:true},
+        {t:'Serwer 8.8.8.8 jest wyłączony', correct:false},
+      ],
+      fb_ok: '✅ Dokładnie! Ping do bramy działa (sieć lokalna OK), ale internet nie. Problem jest po stronie WAN — awaria łącza operatora, odłączony kabel WAN, lub problem po stronie ISP.',
+      fb_no: '❌ Skoro brama (192.168.1.1) odpowiada, sieć lokalna działa. Problem jest „za routerem" — łącze WAN do operatora. Serwer 8.8.8.8 Google praktycznie nigdy nie jest wyłączony.',
+      xp: 25
+    }
+  },
+  ch2: {
+    1: {
+      terminal: `<span class="output">Śledzenie trasy do example.com [93.184.216.34]:</span><br>
+<span class="output"> 1    1 ms    1 ms    1 ms  192.168.1.1</span><br>
+<span class="output"> 2    5 ms    4 ms    5 ms  10.0.0.1</span><br>
+<span class="output"> 3    8 ms    9 ms    8 ms  war-core.isp.pl</span><br>
+<span class="output"> 4   <span class="highlight">85 ms   92 ms   88 ms</span>  fra-edge.transit.net</span><br>
+<span class="output"> 5   86 ms   84 ms   87 ms  93.184.216.34</span>`,
+      q: 'Na którym hopie następuje największy skok opóźnienia?',
+      opts: [
+        {t:'Hop 3 → 4: skok z ~8 ms do ~88 ms — to przeskok międzynarodowy (Warszawa → Frankfurt)', correct:true},
+        {t:'Hop 1 → 2: skok z 1 ms do 5 ms', correct:false},
+        {t:'Hop 4 → 5: 88 → 86 ms — tu jest problem', correct:false},
+      ],
+      fb_ok: '✅ Świetnie! Skok z 8 ms do 88 ms między hopem 3 (war = Warszawa) a hopem 4 (fra = Frankfurt) to typowy przeskok międzynarodowy. To normalne — sygnał podróżuje fizycznie setki km.',
+      fb_no: '❌ Szukamy największego skoku: hop 3 (8 ms) → hop 4 (88 ms) to skok o 80 ms. To przeskok Warszawa → Frankfurt — normalny dla trasy międzynarodowej.',
+      xp: 15
+    },
+    2: {
+      terminal: `<span class="output">Śledzenie trasy do slowserver.pl [185.10.20.30]:</span><br>
+<span class="output"> 1    1 ms    1 ms    2 ms  192.168.1.1</span><br>
+<span class="output"> 2    4 ms    5 ms    4 ms  10.0.0.1</span><br>
+<span class="output"> 3    7 ms    8 ms    7 ms  core1.isp.pl</span><br>
+<span class="output"> 4    <span class="err">*       *       *</span>     Upłynął limit czasu.</span><br>
+<span class="output"> 5    <span class="err">*       *       *</span>     Upłynął limit czasu.</span><br>
+<span class="output"> 6   12 ms   11 ms   13 ms  185.10.20.30</span>`,
+      q: 'Hopy 4 i 5 nie odpowiadają (*). Czy to oznacza awarię?',
+      opts: [
+        {t:'Tak — routery 4 i 5 są uszkodzone, pakiety się tam gubią', correct:false},
+        {t:'Nie koniecznie — te routery mogą blokować ICMP (filtracja). Pakiet dotarł do celu (hop 6) w 12 ms, więc trasa działa', correct:true},
+        {t:'Nie da się ocenić bez pathping', correct:false},
+      ],
+      fb_ok: '✅ Dokładnie! Gwiazdki (*) oznaczają, że router nie odpowiada na ICMP — ale to nie znaczy, że nie przepuszcza ruchu. Wielu administratorów celowo blokuje odpowiedzi ping na routerach. Hop 6 (cel) odpowiada w 12 ms — trasa działa dobrze.',
+      fb_no: '❌ Gwiazdki (*) nie zawsze oznaczają awarię! Router może filtrować (ignorować) ICMP. Kluczowe jest to, że cel (hop 6) odpowiada normalnie w 12 ms.',
+      xp: 20
+    },
+    3: {
+      terminal: `<span class="output">Śledzenie trasy do streaming.pl [91.200.50.10]:</span><br>
+<span class="output"> 1     1 ms    1 ms    1 ms  192.168.1.1</span><br>
+<span class="output"> 2     5 ms    4 ms    5 ms  10.0.0.1</span><br>
+<span class="output"> 3   <span class="err">145 ms  210 ms  180 ms</span>  overloaded.isp.pl</span><br>
+<span class="output"> 4   148 ms  215 ms  182 ms  peer1.transit.net</span><br>
+<span class="output"> 5   150 ms  212 ms  185 ms  91.200.50.10</span>`,
+      q: 'Jakie wnioski wyciągniesz z tego tracert?',
+      opts: [
+        {t:'Problem to przeskok międzynarodowy (hop 2→3)', correct:false},
+        {t:'Problem na hop 3 (skok z 5 ms do ~180 ms, a nazwa „overloaded" sugeruje przeciążenie routera operatora). Duży jitter (145–210 ms) potwierdza problem.', correct:true},
+        {t:'Streaming.pl ma wolny serwer — nic nie zrobisz', correct:false},
+      ],
+      fb_ok: '✅ Doskonała diagnoza! Skok z 5 ms do 145–210 ms na hop 3 to wyraźne wąskie gardło. Duży rozstrzał (145 vs 210 ms) oznacza wysoki jitter. Nazwa „overloaded" sugeruje przeciążony router operatora. To problem, który powinien rozwiązać ISP.',
+      fb_no: '❌ Hop 2→3 to ten sam kraj (nie międzynarodowy). Kluczowy jest skok z 5 ms do 145–210 ms na hop 3 — to nie jest normalne i wskazuje na przeciążenie po stronie operatora.',
+      xp: 25
+    }
+  },
+  ch3: {
+    1: {
+      q: 'Kolega mówi: „Nie mogę wejść na stronę szkoły, ale inne strony działają". Które narzędzie użyjesz <strong>najpierw</strong>?',
+      opts: [
+        {t:'ping szkolaxy.pl — sprawdzam, czy serwer szkoły odpowiada', correct:false},
+        {t:'nslookup szkolaxy.pl — sprawdzam, czy DNS poprawnie rozwiązuje adres szkoły', correct:true},
+        {t:'tracert szkolaxy.pl — śledzę trasę do serwera', correct:false},
+        {t:'ipconfig /flushdns — czyszczę cache DNS na wszelki wypadek', correct:false},
+      ],
+      fb_ok: '✅ Tak! Skoro inne strony działają, internet jest OK. Problem prawdopodobnie dotyczy DNS. nslookup pokaże, czy nazwa domeny jest poprawnie rozwiązywana. Jeśli nie — można spróbować ipconfig /flushdns lub zmienić DNS.',
+      fb_no: '❌ Skoro inne strony działają, internet działa. Najpierw sprawdzamy DNS (nslookup), bo to najczęstsza przyczyna, gdy jedna strona nie działa, a inne tak.',
+      xp: 15
+    },
+    2: {
+      q: 'Użytkownik zgłasza: „Internet działa, ale jest bardzo wolny od kilku godzin". Co robisz krok po kroku?',
+      opts: [
+        {t:'resmon → sprawdzam które procesy zużywają sieć → jeśli nic podejrzanego, speedtest → porównuję z umową → jeśli niski wynik, ping -t do bramy i 8.8.8.8 → szukam strat i jittera', correct:true},
+        {t:'Od razu dzwonię do operatora z reklamacją', correct:false},
+        {t:'tracert google.com → patrzę gdzie jest wąskie gardło', correct:false},
+        {t:'ipconfig /release → ipconfig /renew → restart komputera', correct:false},
+      ],
+      fb_ok: '✅ Profesjonalne podejście! Najpierw wykluczamy problem po naszej stronie (resmon — może coś pożera łącze?), potem mierzymy (speedtest), a na końcu diagnozujemy stabilność (ping -t). Dopiero z danymi dzwonimy do ISP.',
+      fb_no: '❌ Najlepsze podejście: 1) resmon — czy coś nie zjada łącza po cichu? 2) speedtest — ile mam faktycznie? 3) ping -t — czy jest stabilne? Dopiero z konkretnymi danymi można reklamować.',
+      xp: 20
+    },
+    3: {
+      q: 'Szkolna sieć Wi-Fi ma problem: część komputerów w sali ma internet, część nie. Wszystkie są w tej samej sieci. Jak systematycznie zdiagnozujesz problem?',
+      opts: [
+        {t:'Na działającym i niedziałającym PC: ipconfig /all → porównuję IP, maskę, bramę, DNS. Jeśli niedziałający ma adres 169.254.x.x (APIPA) → problem z DHCP. Jeśli ma poprawne IP → ping brama → ping 8.8.8.8 → wnioskuję.', correct:true},
+        {t:'Restartuję router Wi-Fi i czekam', correct:false},
+        {t:'Na każdym komputerze uruchamiam Speedtest.net', correct:false},
+        {t:'tracert google.com na wszystkich komputerach jednocześnie', correct:false},
+      ],
+      fb_ok: '✅ Wzorcowa diagnostyka! Porównanie ipconfig dwóch komputerów natychmiast pokaże różnicę. Adres 169.254.x.x (APIPA) oznacza, że DHCP nie przydzielił IP — problem z połączeniem do routera. Poprawne IP + brak pingu do bramy → problem warstwy 2 (kabel/Wi-Fi).',
+      fb_no: '❌ Kluczowe to porównanie ipconfig /all na działającym i niedziałającym PC. Adres 169.254.x.x wskazuje na brak DHCP, poprawny IP + brak pingu bramy → problem połączenia. Restart routera to „brute force", nie diagnostyka.',
+      xp: 25
+    }
+  }
+};
+
+function setTier(chId, tier, btn) {
+  currentTier[chId] = tier;
+  btn.parentElement.querySelectorAll('.tier-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  challengeDone[chId] = false;
+  renderChallenge(chId, tier);
+}
+
+function renderChallenge(chId, tier) {
+  const data = challengeData[chId][tier];
+  const content = document.getElementById(chId+'-content');
+  let html = '';
+
+  if(data.terminal) {
+    html += `<div class="terminal" style="margin:12px 0"><div class="terminal-bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="label">Wynik polecenia</span></div><div class="terminal-body">${data.terminal}</div></div>`;
+  }
+
+  html += `<p style="font-weight:600;margin:12px 0">${data.q}</p>`;
+  data.opts.forEach((o,i) => {
+    html += `<button class="quiz-option" onclick="checkChallengeOpt('${chId}',${tier},this,${!!o.correct})" style="margin-top:4px">${o.t}</button>`;
+  });
+  html += `<div class="quiz-feedback" id="${chId}-fb"></div>`;
+  content.innerHTML = html;
+}
+
+function checkChallengeOpt(chId, tier, btn, isCorrect) {
+  if(challengeDone[chId]) return;
+  const data = challengeData[chId][tier];
+  const fb = document.getElementById(chId+'-fb');
+  const btns = btn.parentElement.querySelectorAll('.quiz-option');
+  btns.forEach(b => {
+    b.disabled = true;
+    if(b.getAttribute('onclick')?.includes('true') && !isCorrect) b.classList.add('correct');
+  });
+  btn.classList.add(isCorrect?'correct':'wrong');
+  fb.className = 'quiz-feedback show ' + (isCorrect?'ok':'no');
+  fb.textContent = isCorrect ? data.fb_ok : data.fb_no;
+  if(isCorrect) addXP(data.xp);
+  challengeDone[chId] = true;
+}
+
+// ============ PETALS ============
+function createPetals() {
+  const bg = document.getElementById('springBg');
+  for(let i=0;i<18;i++){
+    const p = document.createElement('div');
+    p.className='petal';
+    p.style.left = Math.random()*100+'%';
+    p.style.animationDuration = (8+Math.random()*12)+'s';
+    p.style.animationDelay = Math.random()*10+'s';
+    p.style.width = (8+Math.random()*10)+'px';
+    p.style.height = p.style.width;
+    p.style.background = ['#f2a7b3','#fce4ec','#c8e6c9','#fff9c4'][Math.floor(Math.random()*4)];
+    bg.appendChild(p);
+  }
+}
+
+// ============ INIT ============
+createPetals();
+renderChallenge('ch1',1);
+renderChallenge('ch2',1);
+renderChallenge('ch3',1);
+</script>
+</body>
+</html>
