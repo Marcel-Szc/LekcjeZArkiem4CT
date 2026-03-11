@@ -1,0 +1,15 @@
+C:\Users\programista\Documents\4CT\LekcjeZArkiem4CT\ProgramowanieApl\09.03.2026\C#OBIEKTOWKA2\C#OBIEKTOWKA2\bin\Debug\net8.0\C#OBIEKTOWKA2.exe
+C:\Users\programista\Documents\4CT\LekcjeZArkiem4CT\ProgramowanieApl\09.03.2026\C#OBIEKTOWKA2\C#OBIEKTOWKA2\bin\Debug\net8.0\C#OBIEKTOWKA2.deps.json
+C:\Users\programista\Documents\4CT\LekcjeZArkiem4CT\ProgramowanieApl\09.03.2026\C#OBIEKTOWKA2\C#OBIEKTOWKA2\bin\Debug\net8.0\C#OBIEKTOWKA2.runtimeconfig.json
+C:\Users\programista\Documents\4CT\LekcjeZArkiem4CT\ProgramowanieApl\09.03.2026\C#OBIEKTOWKA2\C#OBIEKTOWKA2\bin\Debug\net8.0\C#OBIEKTOWKA2.dll
+C:\Users\programista\Documents\4CT\LekcjeZArkiem4CT\ProgramowanieApl\09.03.2026\C#OBIEKTOWKA2\C#OBIEKTOWKA2\bin\Debug\net8.0\C#OBIEKTOWKA2.pdb
+C:\Users\programista\Documents\4CT\LekcjeZArkiem4CT\ProgramowanieApl\09.03.2026\C#OBIEKTOWKA2\C#OBIEKTOWKA2\obj\Debug\net8.0\C#OBIEKTOWKA2.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\programista\Documents\4CT\LekcjeZArkiem4CT\ProgramowanieApl\09.03.2026\C#OBIEKTOWKA2\C#OBIEKTOWKA2\obj\Debug\net8.0\C#OBIEKTOWKA2.AssemblyInfoInputs.cache
+C:\Users\programista\Documents\4CT\LekcjeZArkiem4CT\ProgramowanieApl\09.03.2026\C#OBIEKTOWKA2\C#OBIEKTOWKA2\obj\Debug\net8.0\C#OBIEKTOWKA2.AssemblyInfo.cs
+C:\Users\programista\Documents\4CT\LekcjeZArkiem4CT\ProgramowanieApl\09.03.2026\C#OBIEKTOWKA2\C#OBIEKTOWKA2\obj\Debug\net8.0\C#OBIEKTOWKA2.csproj.CoreCompileInputs.cache
+C:\Users\programista\Documents\4CT\LekcjeZArkiem4CT\ProgramowanieApl\09.03.2026\C#OBIEKTOWKA2\C#OBIEKTOWKA2\obj\Debug\net8.0\C#OBIEKTOWKA2.sourcelink.json
+C:\Users\programista\Documents\4CT\LekcjeZArkiem4CT\ProgramowanieApl\09.03.2026\C#OBIEKTOWKA2\C#OBIEKTOWKA2\obj\Debug\net8.0\C#OBIEKTOWKA2.dll
+C:\Users\programista\Documents\4CT\LekcjeZArkiem4CT\ProgramowanieApl\09.03.2026\C#OBIEKTOWKA2\C#OBIEKTOWKA2\obj\Debug\net8.0\refint\C#OBIEKTOWKA2.dll
+C:\Users\programista\Documents\4CT\LekcjeZArkiem4CT\ProgramowanieApl\09.03.2026\C#OBIEKTOWKA2\C#OBIEKTOWKA2\obj\Debug\net8.0\C#OBIEKTOWKA2.pdb
+C:\Users\programista\Documents\4CT\LekcjeZArkiem4CT\ProgramowanieApl\09.03.2026\C#OBIEKTOWKA2\C#OBIEKTOWKA2\obj\Debug\net8.0\C#OBIEKTOWKA2.genruntimeconfig.cache
+C:\Users\programista\Documents\4CT\LekcjeZArkiem4CT\ProgramowanieApl\09.03.2026\C#OBIEKTOWKA2\C#OBIEKTOWKA2\obj\Debug\net8.0\ref\C#OBIEKTOWKA2.dll

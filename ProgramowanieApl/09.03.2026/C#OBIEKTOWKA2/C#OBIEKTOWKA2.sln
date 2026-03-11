@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36203.30 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "C#OBIEKTOWKA2", "C#OBIEKTOWKA2\C#OBIEKTOWKA2.csproj", "{09F88F39-4AA5-4F17-BC98-D07D83ACF43D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{09F88F39-4AA5-4F17-BC98-D07D83ACF43D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{09F88F39-4AA5-4F17-BC98-D07D83ACF43D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{09F88F39-4AA5-4F17-BC98-D07D83ACF43D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{09F88F39-4AA5-4F17-BC98-D07D83ACF43D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F5DE08BB-2B17-4E3A-BCF2-9B80DAE8C10E}
+	EndGlobalSection
+EndGlobal
