@@ -12,6 +12,15 @@
     <None Update="AppShell.xaml">
       <SubType>Designer</SubType>
     </None>
+    <None Update="GaleriaPage.xaml">
+      <SubType>Designer</SubType>
+    </None>
+    <None Update="KontaktPage.xaml">
+      <SubType>Designer</SubType>
+    </None>
+    <None Update="ONasPage.xaml">
+      <SubType>Designer</SubType>
+    </None>
     <None Update="Platforms\Windows\App.xaml">
       <SubType>Designer</SubType>
     </None>

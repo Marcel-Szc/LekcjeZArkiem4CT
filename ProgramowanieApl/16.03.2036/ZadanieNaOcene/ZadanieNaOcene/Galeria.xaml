@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ZadanieNaOcene.Galeria"
+             Title="Galeria">
+    <ScrollView>
+        <VerticalStackLayout
+            Padding="20"
+            Spacing="15">
+            <Image x:Name="Foto1" Source="island.jpg" HeightRequest="200" Aspect="AspectFill"/>
+            <Button Text="Efekt dla foto 1" Clicked="efekt1"/>
+            <BoxView HeightRequest="2" BackgroundColor="Gray"/>
+            <Image x:Name="Foto2" Source="island2.jpg" HeightRequest="200" Aspect="AspectFill"/>
+            <Button Text="Efekt dla foto 2" Clicked="efekt2"/>
+            <BoxView HeightRequest="2" BackgroundColor="Gray"/>
+            <Image x:Name="Foto3" Source="island3.jpg" HeightRequest="200" Aspect="AspectFill"/>
+            <Button Text="Efekt dla foto 3" Clicked="efekt3"/>
+            <BoxView HeightRequest="2" BackgroundColor="Gray"/>
+            <Image x:Name="Foto4" Source="island4.jpg" HeightRequest="200" Aspect="AspectFill"/>
+            <Button Text="Efekt dla foto 4" Clicked="efekt4"/>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

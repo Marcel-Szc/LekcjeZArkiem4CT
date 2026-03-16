@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiApp1.MainPage">
+
+    <ScrollView>
+        <VerticalStackLayout
+            Padding="30,0"
+            Spacing="25">
+            <!--Pytanie 1 -->
+            <Label Text="1. Jaki jest wynik 2+2?" FontAttributes="Bold" />
+            <RadioButton x:Name="Q1_Option1" Content="3" GroupName="Q1" Value="0"/>
+            <RadioButton x:Name="Q1_Option2" Content="4" GroupName="Q1" Value="1"/>
+            <!--Pytanie 2 -->
+            <Label Text="2. Stolica Polski to?" FontAttributes="Bold"/>
+            <RadioButton x:Name="Q2_Option1" Content="Warszawa" GroupName="Q2" Value="1"/>
+            <RadioButton x:Name="Q2_Option2" Content="Choroszcz" GroupName="Q2" Value="0"/>
+            <!--Pytanie 3 -->
+            <Label Text="3. .NET MAUI służy do?" FontAttributes="Bold"/>
+            <RadioButton x:Name="Q3_Option1" Content="Aplikacji mobilnych i desktopowych" GroupName="Q3" Value="1"/>
+            <RadioButton x:Name="Q3_Option2" Content="Aplikacje internetowe" GroupName="Q3" Value="0"/>
+            <!--Przycisk sprawdzający odpowiedzi -->
+            <Button Text="Sprawdź odpowiedzi" Clicked="SprawdzOdp"/>
+
+            <Label x:Name="ResultLabel" FontAttributes="Bold" TextColor="Green" HorizontalOptions="Center"/>
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

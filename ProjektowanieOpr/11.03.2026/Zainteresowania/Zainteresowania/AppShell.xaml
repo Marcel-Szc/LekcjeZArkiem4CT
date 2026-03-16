@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="Zainteresowania.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:Zainteresowania"
+    Title="Zainteresowania">
+
+    <FlyoutItem Title="Autor">
+        <ShellContent ContentTemplate="{DataTemplate local:Autor}" />
+    </FlyoutItem>
+
+    <FlyoutItem Title="Zainteresowanie">
+        <ShellContent ContentTemplate="{DataTemplate local:Zainteresowanie}" />
+    </FlyoutItem>
+
+    <FlyoutItem Title="Galeria">
+        <ShellContent ContentTemplate="{DataTemplate local:Galeria}" />
+    </FlyoutItem>
+
+    <FlyoutItem Title="Email">
+        <ShellContent ContentTemplate="{DataTemplate local:Email}" />
+    </FlyoutItem>
+
+    <FlyoutItem Title="Kalkulator">
+        <ShellContent ContentTemplate="{DataTemplate local:Kalkulator}" />
+    </FlyoutItem>
+
+</Shell>

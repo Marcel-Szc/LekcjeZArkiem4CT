@@ -1,0 +1,139 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\programista\\Documents\\4CT\\LekcjeZArkiem4CT\\ProjektowanieOpr\\11.03.2026\\MauiApp3\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{D0AFE1CF-7B6F-4065-A96E-591C2AE048AE}|MauiApp3\\MauiApp3.csproj|c:\\users\\programista\\documents\\4ct\\lekcjezarkiem4ct\\projektowanieopr\\11.03.2026\\mauiapp3\\mauiapp3\\galeriapage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{D0AFE1CF-7B6F-4065-A96E-591C2AE048AE}|MauiApp3\\MauiApp3.csproj|solutionrelative:mauiapp3\\galeriapage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D0AFE1CF-7B6F-4065-A96E-591C2AE048AE}|MauiApp3\\MauiApp3.csproj|c:\\users\\programista\\documents\\4ct\\lekcjezarkiem4ct\\projektowanieopr\\11.03.2026\\mauiapp3\\mauiapp3\\onaspage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{D0AFE1CF-7B6F-4065-A96E-591C2AE048AE}|MauiApp3\\MauiApp3.csproj|solutionrelative:mauiapp3\\onaspage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D0AFE1CF-7B6F-4065-A96E-591C2AE048AE}|MauiApp3\\MauiApp3.csproj|c:\\users\\programista\\documents\\4ct\\lekcjezarkiem4ct\\projektowanieopr\\11.03.2026\\mauiapp3\\mauiapp3\\onaspage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D0AFE1CF-7B6F-4065-A96E-591C2AE048AE}|MauiApp3\\MauiApp3.csproj|solutionrelative:mauiapp3\\onaspage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D0AFE1CF-7B6F-4065-A96E-591C2AE048AE}|MauiApp3\\MauiApp3.csproj|c:\\users\\programista\\documents\\4ct\\lekcjezarkiem4ct\\projektowanieopr\\11.03.2026\\mauiapp3\\mauiapp3\\kontaktpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D0AFE1CF-7B6F-4065-A96E-591C2AE048AE}|MauiApp3\\MauiApp3.csproj|solutionrelative:mauiapp3\\kontaktpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D0AFE1CF-7B6F-4065-A96E-591C2AE048AE}|MauiApp3\\MauiApp3.csproj|c:\\users\\programista\\documents\\4ct\\lekcjezarkiem4ct\\projektowanieopr\\11.03.2026\\mauiapp3\\mauiapp3\\kontaktpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{D0AFE1CF-7B6F-4065-A96E-591C2AE048AE}|MauiApp3\\MauiApp3.csproj|solutionrelative:mauiapp3\\kontaktpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D0AFE1CF-7B6F-4065-A96E-591C2AE048AE}|MauiApp3\\MauiApp3.csproj|c:\\users\\programista\\documents\\4ct\\lekcjezarkiem4ct\\projektowanieopr\\11.03.2026\\mauiapp3\\mauiapp3\\galeriapage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D0AFE1CF-7B6F-4065-A96E-591C2AE048AE}|MauiApp3\\MauiApp3.csproj|solutionrelative:mauiapp3\\galeriapage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D0AFE1CF-7B6F-4065-A96E-591C2AE048AE}|MauiApp3\\MauiApp3.csproj|c:\\users\\programista\\documents\\4ct\\lekcjezarkiem4ct\\projektowanieopr\\11.03.2026\\mauiapp3\\mauiapp3\\appshell.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{D0AFE1CF-7B6F-4065-A96E-591C2AE048AE}|MauiApp3\\MauiApp3.csproj|solutionrelative:mauiapp3\\appshell.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 4,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ONasPage.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\programista\\Documents\\4CT\\LekcjeZArkiem4CT\\ProjektowanieOpr\\11.03.2026\\MauiApp3\\MauiApp3\\ONasPage.xaml.cs",
+              "RelativeDocumentMoniker": "MauiApp3\\ONasPage.xaml.cs",
+              "ToolTip": "C:\\Users\\programista\\Documents\\4CT\\LekcjeZArkiem4CT\\ProjektowanieOpr\\11.03.2026\\MauiApp3\\MauiApp3\\ONasPage.xaml.cs",
+              "RelativeToolTip": "MauiApp3\\ONasPage.xaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-16T07:30:52.149Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "KontaktPage.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\programista\\Documents\\4CT\\LekcjeZArkiem4CT\\ProjektowanieOpr\\11.03.2026\\MauiApp3\\MauiApp3\\KontaktPage.xaml.cs",
+              "RelativeDocumentMoniker": "MauiApp3\\KontaktPage.xaml.cs",
+              "ToolTip": "C:\\Users\\programista\\Documents\\4CT\\LekcjeZArkiem4CT\\ProjektowanieOpr\\11.03.2026\\MauiApp3\\MauiApp3\\KontaktPage.xaml.cs",
+              "RelativeToolTip": "MauiApp3\\KontaktPage.xaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-16T07:27:54.953Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "KontaktPage.xaml",
+              "DocumentMoniker": "C:\\Users\\programista\\Documents\\4CT\\LekcjeZArkiem4CT\\ProjektowanieOpr\\11.03.2026\\MauiApp3\\MauiApp3\\KontaktPage.xaml",
+              "RelativeDocumentMoniker": "MauiApp3\\KontaktPage.xaml",
+              "ToolTip": "C:\\Users\\programista\\Documents\\4CT\\LekcjeZArkiem4CT\\ProjektowanieOpr\\11.03.2026\\MauiApp3\\MauiApp3\\KontaktPage.xaml",
+              "RelativeToolTip": "MauiApp3\\KontaktPage.xaml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-03-16T07:23:36.888Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "GaleriaPage.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\programista\\Documents\\4CT\\LekcjeZArkiem4CT\\ProjektowanieOpr\\11.03.2026\\MauiApp3\\MauiApp3\\GaleriaPage.xaml.cs",
+              "RelativeDocumentMoniker": "MauiApp3\\GaleriaPage.xaml.cs",
+              "ToolTip": "C:\\Users\\programista\\Documents\\4CT\\LekcjeZArkiem4CT\\ProjektowanieOpr\\11.03.2026\\MauiApp3\\MauiApp3\\GaleriaPage.xaml.cs",
+              "RelativeToolTip": "MauiApp3\\GaleriaPage.xaml.cs",
+              "ViewState": "AgIAAAEAAAAAAAAAAAAAAAYAAAAeAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-16T07:20:55.857Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "GaleriaPage.xaml",
+              "DocumentMoniker": "C:\\Users\\programista\\Documents\\4CT\\LekcjeZArkiem4CT\\ProjektowanieOpr\\11.03.2026\\MauiApp3\\MauiApp3\\GaleriaPage.xaml",
+              "RelativeDocumentMoniker": "MauiApp3\\GaleriaPage.xaml",
+              "ToolTip": "C:\\Users\\programista\\Documents\\4CT\\LekcjeZArkiem4CT\\ProjektowanieOpr\\11.03.2026\\MauiApp3\\MauiApp3\\GaleriaPage.xaml",
+              "RelativeToolTip": "MauiApp3\\GaleriaPage.xaml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-03-16T07:19:25.475Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ONasPage.xaml",
+              "DocumentMoniker": "C:\\Users\\programista\\Documents\\4CT\\LekcjeZArkiem4CT\\ProjektowanieOpr\\11.03.2026\\MauiApp3\\MauiApp3\\ONasPage.xaml",
+              "RelativeDocumentMoniker": "MauiApp3\\ONasPage.xaml",
+              "ToolTip": "C:\\Users\\programista\\Documents\\4CT\\LekcjeZArkiem4CT\\ProjektowanieOpr\\11.03.2026\\MauiApp3\\MauiApp3\\ONasPage.xaml",
+              "RelativeToolTip": "MauiApp3\\ONasPage.xaml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-03-16T07:02:11.849Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "AppShell.xaml",
+              "DocumentMoniker": "C:\\Users\\programista\\Documents\\4CT\\LekcjeZArkiem4CT\\ProjektowanieOpr\\11.03.2026\\MauiApp3\\MauiApp3\\AppShell.xaml",
+              "RelativeDocumentMoniker": "MauiApp3\\AppShell.xaml",
+              "ToolTip": "C:\\Users\\programista\\Documents\\4CT\\LekcjeZArkiem4CT\\ProjektowanieOpr\\11.03.2026\\MauiApp3\\MauiApp3\\AppShell.xaml",
+              "RelativeToolTip": "MauiApp3\\AppShell.xaml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAUAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-03-16T06:46:28.139Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

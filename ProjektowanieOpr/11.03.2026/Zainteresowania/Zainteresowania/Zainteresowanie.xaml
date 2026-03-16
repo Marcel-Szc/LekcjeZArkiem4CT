@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Zainteresowania.Zainteresowanie"
+             Title="Zainteresowanie">
+    <VerticalStackLayout>
+        <Label 
+            Text="Moje zainteresowanie to djowanie"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+        <Image Source="images.jpg"
+            HeightRequest="1000"
+            Aspect="AspectFill"/>
+    </VerticalStackLayout>
+</ContentPage>

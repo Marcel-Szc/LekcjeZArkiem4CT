@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Zainteresowania.Kalkulator"
+             Title="Kalkulator">
+    <VerticalStackLayout>
+        <Label 
+            Text="Kalkulator snu"
+            FontSize="28"
+            HorizontalOptions="Center"/>
+
+        <Label Text="Ile godzin spałeś?" />
+
+        <Entry
+            x:Name="godzinySnu"
+            Placeholder="np. 7"
+            Keyboard="Numeric"/>
+
+        <Button
+            Text="Sprawdź"
+            Clicked="SprawdzSen"/>
+
+        <Label
+            x:Name="wynik"
+            FontSize="20"
+            HorizontalOptions="Center"/>
+    </VerticalStackLayout>
+</ContentPage>

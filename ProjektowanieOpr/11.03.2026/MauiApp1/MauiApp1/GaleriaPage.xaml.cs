@@ -1,8 +1,10 @@
-namespace MauiApp1;
-public partial class GaleriaPage : ContentPage
+namespace MauiApp1
 {
-	public GaleriaPage()
-	{
-		InitializeComponent();
-	}
+    public partial class GaleriaPage : ContentPage
+    {
+        public GaleriaPage()
+        {
+            InitializeComponent();
+        }
+    }
 }

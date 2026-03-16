@@ -1,9 +1,10 @@
-namespace MauiApp1;
-
-public partial class ONasPage : ContentPage
+namespace MauiApp1
 {
-	public ONasPage()
-	{
-		InitializeComponent();
-	}
+    public partial class ONasPage : ContentPage
+    {
+        public ONasPage()
+        {
+            InitializeComponent();
+        }
+    }
 }

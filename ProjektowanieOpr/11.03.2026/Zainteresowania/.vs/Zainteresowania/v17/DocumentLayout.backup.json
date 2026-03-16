@@ -1,0 +1,173 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\programista\\Documents\\4CT\\LekcjeZArkiem4CT\\ProjektowanieOpr\\11.03.2026\\Zainteresowania\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{33662E7C-2E19-4D32-A266-33A5A9F26985}|Zainteresowania\\Zainteresowania.csproj|c:\\users\\programista\\documents\\4ct\\lekcjezarkiem4ct\\projektowanieopr\\11.03.2026\\zainteresowania\\zainteresowania\\kalkulator.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{33662E7C-2E19-4D32-A266-33A5A9F26985}|Zainteresowania\\Zainteresowania.csproj|solutionrelative:zainteresowania\\kalkulator.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{33662E7C-2E19-4D32-A266-33A5A9F26985}|Zainteresowania\\Zainteresowania.csproj|c:\\users\\programista\\documents\\4ct\\lekcjezarkiem4ct\\projektowanieopr\\11.03.2026\\zainteresowania\\zainteresowania\\kalkulator.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{33662E7C-2E19-4D32-A266-33A5A9F26985}|Zainteresowania\\Zainteresowania.csproj|solutionrelative:zainteresowania\\kalkulator.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{33662E7C-2E19-4D32-A266-33A5A9F26985}|Zainteresowania\\Zainteresowania.csproj|c:\\users\\programista\\documents\\4ct\\lekcjezarkiem4ct\\projektowanieopr\\11.03.2026\\zainteresowania\\zainteresowania\\email.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{33662E7C-2E19-4D32-A266-33A5A9F26985}|Zainteresowania\\Zainteresowania.csproj|solutionrelative:zainteresowania\\email.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{33662E7C-2E19-4D32-A266-33A5A9F26985}|Zainteresowania\\Zainteresowania.csproj|c:\\users\\programista\\documents\\4ct\\lekcjezarkiem4ct\\projektowanieopr\\11.03.2026\\zainteresowania\\zainteresowania\\email.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{33662E7C-2E19-4D32-A266-33A5A9F26985}|Zainteresowania\\Zainteresowania.csproj|solutionrelative:zainteresowania\\email.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{33662E7C-2E19-4D32-A266-33A5A9F26985}|Zainteresowania\\Zainteresowania.csproj|c:\\users\\programista\\documents\\4ct\\lekcjezarkiem4ct\\projektowanieopr\\11.03.2026\\zainteresowania\\zainteresowania\\galeria.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{33662E7C-2E19-4D32-A266-33A5A9F26985}|Zainteresowania\\Zainteresowania.csproj|solutionrelative:zainteresowania\\galeria.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{33662E7C-2E19-4D32-A266-33A5A9F26985}|Zainteresowania\\Zainteresowania.csproj|c:\\users\\programista\\documents\\4ct\\lekcjezarkiem4ct\\projektowanieopr\\11.03.2026\\zainteresowania\\zainteresowania\\zainteresowanie.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{33662E7C-2E19-4D32-A266-33A5A9F26985}|Zainteresowania\\Zainteresowania.csproj|solutionrelative:zainteresowania\\zainteresowanie.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{33662E7C-2E19-4D32-A266-33A5A9F26985}|Zainteresowania\\Zainteresowania.csproj|c:\\users\\programista\\documents\\4ct\\lekcjezarkiem4ct\\projektowanieopr\\11.03.2026\\zainteresowania\\zainteresowania\\mainpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{33662E7C-2E19-4D32-A266-33A5A9F26985}|Zainteresowania\\Zainteresowania.csproj|solutionrelative:zainteresowania\\mainpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{33662E7C-2E19-4D32-A266-33A5A9F26985}|Zainteresowania\\Zainteresowania.csproj|c:\\users\\programista\\documents\\4ct\\lekcjezarkiem4ct\\projektowanieopr\\11.03.2026\\zainteresowania\\zainteresowania\\appshell.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{33662E7C-2E19-4D32-A266-33A5A9F26985}|Zainteresowania\\Zainteresowania.csproj|solutionrelative:zainteresowania\\appshell.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{33662E7C-2E19-4D32-A266-33A5A9F26985}|Zainteresowania\\Zainteresowania.csproj|c:\\users\\programista\\documents\\4ct\\lekcjezarkiem4ct\\projektowanieopr\\11.03.2026\\zainteresowania\\zainteresowania\\autor.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{33662E7C-2E19-4D32-A266-33A5A9F26985}|Zainteresowania\\Zainteresowania.csproj|solutionrelative:zainteresowania\\autor.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Kalkulator.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\programista\\Documents\\4CT\\LekcjeZArkiem4CT\\ProjektowanieOpr\\11.03.2026\\Zainteresowania\\Zainteresowania\\Kalkulator.xaml.cs",
+              "RelativeDocumentMoniker": "Zainteresowania\\Kalkulator.xaml.cs",
+              "ToolTip": "C:\\Users\\programista\\Documents\\4CT\\LekcjeZArkiem4CT\\ProjektowanieOpr\\11.03.2026\\Zainteresowania\\Zainteresowania\\Kalkulator.xaml.cs",
+              "RelativeToolTip": "Zainteresowania\\Kalkulator.xaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-16T09:28:42.663Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Email.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\programista\\Documents\\4CT\\LekcjeZArkiem4CT\\ProjektowanieOpr\\11.03.2026\\Zainteresowania\\Zainteresowania\\Email.xaml.cs",
+              "RelativeDocumentMoniker": "Zainteresowania\\Email.xaml.cs",
+              "ToolTip": "C:\\Users\\programista\\Documents\\4CT\\LekcjeZArkiem4CT\\ProjektowanieOpr\\11.03.2026\\Zainteresowania\\Zainteresowania\\Email.xaml.cs",
+              "RelativeToolTip": "Zainteresowania\\Email.xaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-16T09:15:40.088Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Kalkulator.xaml",
+              "DocumentMoniker": "C:\\Users\\programista\\Documents\\4CT\\LekcjeZArkiem4CT\\ProjektowanieOpr\\11.03.2026\\Zainteresowania\\Zainteresowania\\Kalkulator.xaml",
+              "RelativeDocumentMoniker": "Zainteresowania\\Kalkulator.xaml",
+              "ToolTip": "C:\\Users\\programista\\Documents\\4CT\\LekcjeZArkiem4CT\\ProjektowanieOpr\\11.03.2026\\Zainteresowania\\Zainteresowania\\Kalkulator.xaml",
+              "RelativeToolTip": "Zainteresowania\\Kalkulator.xaml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-03-16T08:13:11.338Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Email.xaml",
+              "DocumentMoniker": "C:\\Users\\programista\\Documents\\4CT\\LekcjeZArkiem4CT\\ProjektowanieOpr\\11.03.2026\\Zainteresowania\\Zainteresowania\\Email.xaml",
+              "RelativeDocumentMoniker": "Zainteresowania\\Email.xaml",
+              "ToolTip": "C:\\Users\\programista\\Documents\\4CT\\LekcjeZArkiem4CT\\ProjektowanieOpr\\11.03.2026\\Zainteresowania\\Zainteresowania\\Email.xaml",
+              "RelativeToolTip": "Zainteresowania\\Email.xaml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-03-16T08:12:52.647Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Galeria.xaml",
+              "DocumentMoniker": "C:\\Users\\programista\\Documents\\4CT\\LekcjeZArkiem4CT\\ProjektowanieOpr\\11.03.2026\\Zainteresowania\\Zainteresowania\\Galeria.xaml",
+              "RelativeDocumentMoniker": "Zainteresowania\\Galeria.xaml",
+              "ToolTip": "C:\\Users\\programista\\Documents\\4CT\\LekcjeZArkiem4CT\\ProjektowanieOpr\\11.03.2026\\Zainteresowania\\Zainteresowania\\Galeria.xaml",
+              "RelativeToolTip": "Zainteresowania\\Galeria.xaml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAeAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-03-16T08:12:07.899Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Zainteresowanie.xaml",
+              "DocumentMoniker": "C:\\Users\\programista\\Documents\\4CT\\LekcjeZArkiem4CT\\ProjektowanieOpr\\11.03.2026\\Zainteresowania\\Zainteresowania\\Zainteresowanie.xaml",
+              "RelativeDocumentMoniker": "Zainteresowania\\Zainteresowanie.xaml",
+              "ToolTip": "C:\\Users\\programista\\Documents\\4CT\\LekcjeZArkiem4CT\\ProjektowanieOpr\\11.03.2026\\Zainteresowania\\Zainteresowania\\Zainteresowanie.xaml",
+              "RelativeToolTip": "Zainteresowania\\Zainteresowanie.xaml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-03-16T08:11:05.671Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Autor.xaml",
+              "DocumentMoniker": "C:\\Users\\programista\\Documents\\4CT\\LekcjeZArkiem4CT\\ProjektowanieOpr\\11.03.2026\\Zainteresowania\\Zainteresowania\\Autor.xaml",
+              "RelativeDocumentMoniker": "Zainteresowania\\Autor.xaml",
+              "ToolTip": "C:\\Users\\programista\\Documents\\4CT\\LekcjeZArkiem4CT\\ProjektowanieOpr\\11.03.2026\\Zainteresowania\\Zainteresowania\\Autor.xaml",
+              "RelativeToolTip": "Zainteresowania\\Autor.xaml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAlAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-03-16T08:04:14.518Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "AppShell.xaml",
+              "DocumentMoniker": "C:\\Users\\programista\\Documents\\4CT\\LekcjeZArkiem4CT\\ProjektowanieOpr\\11.03.2026\\Zainteresowania\\Zainteresowania\\AppShell.xaml",
+              "RelativeDocumentMoniker": "Zainteresowania\\AppShell.xaml",
+              "ToolTip": "C:\\Users\\programista\\Documents\\4CT\\LekcjeZArkiem4CT\\ProjektowanieOpr\\11.03.2026\\Zainteresowania\\Zainteresowania\\AppShell.xaml",
+              "RelativeToolTip": "Zainteresowania\\AppShell.xaml",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAowBQAAAAeAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-03-16T07:46:46.612Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "MainPage.xaml",
+              "DocumentMoniker": "C:\\Users\\programista\\Documents\\4CT\\LekcjeZArkiem4CT\\ProjektowanieOpr\\11.03.2026\\Zainteresowania\\Zainteresowania\\MainPage.xaml",
+              "RelativeDocumentMoniker": "Zainteresowania\\MainPage.xaml",
+              "ToolTip": "C:\\Users\\programista\\Documents\\4CT\\LekcjeZArkiem4CT\\ProjektowanieOpr\\11.03.2026\\Zainteresowania\\Zainteresowania\\MainPage.xaml",
+              "RelativeToolTip": "Zainteresowania\\MainPage.xaml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-03-16T07:46:34.289Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

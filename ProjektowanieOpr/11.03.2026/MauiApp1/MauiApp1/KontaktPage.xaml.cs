@@ -1,16 +1,17 @@
-namespace MauiApp1;
-
-public partial class KontaktPage : ContentPage
+namespace MauiApp1
 {
-	public KontaktPage()
-	{
-		InitializeComponent();
-	}
-
-    private async void PoKliknieciuWyslij(object sender, EventArgs e)
+    public partial class KontaktPage : ContentPage
     {
-		await DisplayAlert("Wys³ano wiadomoœæ", $"Tytu³: {EntryTytul.Text}\n'  {WiadomoscEdytor.Text}'","OK");
-		EntryTytul.Text = "";
-		WiadomoscEdytor.Text = "";
+        public KontaktPage()
+        {
+            InitializeComponent();
+        }
+
+        private async void PoKliknieciuWyslij(object sender, EventArgs e)
+        {
+            await DisplayAlert("Wys³ano wiadomoœæ", $"Tytu³: {EntryTytul.Text}\n'  {WiadomoscEdytor.Text}'", "OK");
+            EntryTytul.Text = "";
+            WiadomoscEdytor.Text = "";
+        }
     }
 }
