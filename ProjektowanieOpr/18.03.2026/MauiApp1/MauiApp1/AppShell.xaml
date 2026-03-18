@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="MauiApp1.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:MauiApp1"
+    Title="MauiApp1">
+
+    <FlyoutItem
+        Title="Wersja 1">
+        <ShellContent
+            Title="Wersja 1 weather API"
+            ContentTemplate="{DataTemplate local:Wersja1}"
+            Route="MainPage" />
+    </FlyoutItem>
+    <FlyoutItem
+        Title="Wersja2">
+        <ShellContent
+            Title="Wersja 2 weather API"
+            ContentTemplate="{DataTemplate local:Wersja2}"
+            Route="MainPage" />
+    </FlyoutItem>
+
+</Shell>
